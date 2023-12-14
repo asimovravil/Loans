@@ -22,6 +22,7 @@
 		F184B0002B2B2A5800E7F293 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F184AFF72B2B2A5800E7F293 /* Inter-Black.ttf */; };
 		F184B0012B2B2A5800E7F293 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F184AFF82B2B2A5800E7F293 /* Inter-SemiBold.ttf */; };
 		F184B0032B2B2E7400E7F293 /* AppColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = F184B0022B2B2E7400E7F293 /* AppColor .swift */; };
+		F184B0052B2B31DF00E7F293 /* AmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184B0042B2B31DF00E7F293 /* AmountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F184AFF72B2B2A5800E7F293 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		F184AFF82B2B2A5800E7F293 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		F184B0022B2B2E7400E7F293 /* AppColor .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppColor .swift"; sourceTree = "<group>"; };
+		F184B0042B2B31DF00E7F293 /* AmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				F184AFB02B2B29B100E7F293 /* AppDelegate.swift */,
 				F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */,
 				F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */,
+				F184B0042B2B31DF00E7F293 /* AmountViewController.swift */,
 				F184B0022B2B2E7400E7F293 /* AppColor .swift */,
 				F184AFB92B2B29B200E7F293 /* Assets.xcassets */,
 				F184AFBB2B2B29B200E7F293 /* LaunchScreen.storyboard */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F184B0052B2B31DF00E7F293 /* AmountViewController.swift in Sources */,
 				F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */,
 				F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */,
 				F184B0032B2B2E7400E7F293 /* AppColor .swift in Sources */,

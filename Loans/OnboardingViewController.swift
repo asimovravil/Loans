@@ -78,8 +78,15 @@ extension OnboardingViewController {
         view.addSubview(imageOnbo)
         
         buttonOnbo.setImage(UIImage(named: "continueButton"), for: .normal)
+        buttonOnbo.addTarget(self, action: #selector(buttonOnboMeta), for: .touchUpInside)
         buttonOnbo.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonOnbo)
+    }
+    
+    @objc func buttonOnboMeta() {
+        let amountVC = AmountViewController()
+        amountVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(amountVC, animated: true)
     }
 }
 
