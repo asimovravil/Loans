@@ -28,5 +28,5 @@ extension AppColorProtocol {
 enum AppColor: String, AppColorProtocol {
     
     case yellowCustom
-    case textFieldColor
+    case yellowLightCustom
 }

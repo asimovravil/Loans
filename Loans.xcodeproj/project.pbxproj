@@ -23,6 +23,8 @@
 		F184B0012B2B2A5800E7F293 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F184AFF82B2B2A5800E7F293 /* Inter-SemiBold.ttf */; };
 		F184B0032B2B2E7400E7F293 /* AppColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = F184B0022B2B2E7400E7F293 /* AppColor .swift */; };
 		F184B0052B2B31DF00E7F293 /* AmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184B0042B2B31DF00E7F293 /* AmountViewController.swift */; };
+		F184B0072B2B383A00E7F293 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184B0062B2B383A00E7F293 /* RegistrationViewController.swift */; };
+		F184B00A2B2B3BE700E7F293 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = F184B0092B2B3BE700E7F293 /* SkyFloatingLabelTextField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,7 @@
 		F184AFF82B2B2A5800E7F293 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		F184B0022B2B2E7400E7F293 /* AppColor .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppColor .swift"; sourceTree = "<group>"; };
 		F184B0042B2B31DF00E7F293 /* AmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountViewController.swift; sourceTree = "<group>"; };
+		F184B0062B2B383A00E7F293 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F184B00A2B2B3BE700E7F293 /* SkyFloatingLabelTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +85,7 @@
 				F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */,
 				F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */,
 				F184B0042B2B31DF00E7F293 /* AmountViewController.swift */,
+				F184B0062B2B383A00E7F293 /* RegistrationViewController.swift */,
 				F184B0022B2B2E7400E7F293 /* AppColor .swift */,
 				F184AFB92B2B29B200E7F293 /* Assets.xcassets */,
 				F184AFBB2B2B29B200E7F293 /* LaunchScreen.storyboard */,
@@ -121,6 +126,9 @@
 			dependencies = (
 			);
 			name = Loans;
+			packageProductDependencies = (
+				F184B0092B2B3BE700E7F293 /* SkyFloatingLabelTextField */,
+			);
 			productName = Loans;
 			productReference = F184AFAD2B2B29B100E7F293 /* Loans.app */;
 			productType = "com.apple.product-type.application";
@@ -149,6 +157,9 @@
 				Base,
 			);
 			mainGroup = F184AFA42B2B29B100E7F293;
+			packageReferences = (
+				F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
+			);
 			productRefGroup = F184AFAE2B2B29B100E7F293 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F184B0072B2B383A00E7F293 /* RegistrationViewController.swift in Sources */,
 				F184B0052B2B31DF00E7F293 /* AmountViewController.swift in Sources */,
 				F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */,
 				F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */,
@@ -401,6 +413,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F184B0092B2B3BE700E7F293 /* SkyFloatingLabelTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F184AFA52B2B29B100E7F293 /* Project object */;
 }

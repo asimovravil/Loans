@@ -62,7 +62,7 @@ extension AmountViewController {
         loansField.textAlignment = .center
         loansField.textColor = .black
         loansField.keyboardType = .default
-        loansField.backgroundColor = AppColor.textFieldColor.uiColor
+        loansField.backgroundColor = AppColor.yellowLightCustom.uiColor
         loansField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loansField)
         
