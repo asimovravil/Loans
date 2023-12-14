@@ -15,6 +15,7 @@ class RegistrationViewController: UIViewController {
     let passwordField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let buttonRegister = UIButton()
     let buttonLogin = UIButton()
+    let passwordVisibilityToggle = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +71,27 @@ extension RegistrationViewController {
         passwordField.font = UIFont(name: "Inter-Regular", size: 18)
         passwordField.selectedLineColor = AppColor.yellowCustom.uiColor
         passwordField.selectedTitleColor = AppColor.yellowCustom.uiColor
+        passwordField.isSecureTextEntry = true
+        passwordField.textContentType = .none
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(passwordField)
+        
+        let eyeImage = UIImage(named: "eye")
+        passwordVisibilityToggle.setImage(eyeImage, for: .normal)
+        passwordVisibilityToggle.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        passwordVisibilityToggle.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+
+        passwordField.rightView = passwordVisibilityToggle
+        passwordField.rightViewMode = .always
     }
+    
+    @objc private func togglePasswordVisibility() {
+        passwordField.isSecureTextEntry.toggle()
+        let eyeImageName = passwordField.isSecureTextEntry ? "eye" : "eyeSelected"
+        let eyeImage = UIImage(named: eyeImageName)
+        passwordVisibilityToggle.setImage(eyeImage, for: .normal)
+    }
+
 }
 
 extension RegistrationViewController {
