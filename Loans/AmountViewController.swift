@@ -21,6 +21,9 @@ class AmountViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -28,6 +31,11 @@ class AmountViewController: UIViewController {
         
         loansField.layer.cornerRadius = 20
         amountButtonRequest.layer.cornerRadius = 20
+    }
+    
+    @objc private func dismissKeyboard() {
+        loansField.resignFirstResponder()
+        view.endEditing(true)
     }
 }
 
