@@ -32,6 +32,8 @@ class SupportViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        buttonContinue.layer.cornerRadius = 20
+        popUpButton.layer.cornerRadius = 20
     }
 }
 

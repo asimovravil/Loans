@@ -18,7 +18,7 @@ class TabBarWhiteViewController: UITabBarController {
     private func addedTabBarSetup() {
         let tab1 = UINavigationController(rootViewController: WhiteLoansViewController())
         let tab2 = UINavigationController(rootViewController: WhiteCardsViewController())
-        let tab3 = WhiteCreditsViewController()
+        let tab3 = UINavigationController(rootViewController: WhiteCreditsViewController())
         let tab4 = UINavigationController(rootViewController: SupportViewController())
         let tab5 = UINavigationController(rootViewController: FAQViewController())
         
