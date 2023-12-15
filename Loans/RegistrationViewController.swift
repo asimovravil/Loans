@@ -16,6 +16,7 @@ class RegistrationViewController: UIViewController {
     let buttonRegister = UIButton(type: .system)
     let buttonLogin = UIButton(type: .system)
     let passwordVisibilityToggle = UIButton(type: .custom)
+    let wrongLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,7 @@ extension RegistrationViewController {
         emailField.selectedLineColor = AppColor.yellowCustom.uiColor
         emailField.selectedTitleColor = AppColor.yellowCustom.uiColor
         emailField.keyboardType = .emailAddress
+        emailField.addTarget(self, action: #selector(validateEmail), for: .editingChanged)
         emailField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(emailField)
         
@@ -84,7 +86,7 @@ extension RegistrationViewController {
         passwordField.selectedLineColor = AppColor.yellowCustom.uiColor
         passwordField.selectedTitleColor = AppColor.yellowCustom.uiColor
         passwordField.isSecureTextEntry = true
-        passwordField.textContentType = .none
+        passwordField.textContentType = .password
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(passwordField)
         
@@ -95,6 +97,15 @@ extension RegistrationViewController {
 
         passwordField.rightView = passwordVisibilityToggle
         passwordField.rightViewMode = .always
+        
+        wrongLabel.text = "*Неверный формат адреса электронной \nпочты"
+        wrongLabel.textColor = AppColor.redCustom.uiColor
+        wrongLabel.font = UIFont(name: "Inter-Regular", size: 16)
+        wrongLabel.textAlignment = .left
+        wrongLabel.numberOfLines = 0
+        wrongLabel.isHidden = true
+        wrongLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(wrongLabel)
     }
     
     @objc private func togglePasswordVisibility() {
@@ -111,6 +122,10 @@ extension RegistrationViewController {
     }
     
     @objc func buttonRegisterMeta() {
+        validateEmail()
+        
+        guard wrongLabel.isHidden else { return }
+        
         let registerProfileVC = RegisterProfileViewController()
         registerProfileVC.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(registerProfileVC, animated: true)
@@ -141,6 +156,10 @@ extension RegistrationViewController {
             buttonLogin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonLogin.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             buttonLogin.heightAnchor.constraint(equalToConstant: 56),
+            
+            wrongLabel.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 32),
+            wrongLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            wrongLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
@@ -154,5 +173,22 @@ extension RegistrationViewController {
                 buttonLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }
+    }
+}
+
+extension RegistrationViewController {
+
+    @objc func validateEmail() {
+        guard let email = emailField.text, isValidEmail(email) else {
+            wrongLabel.isHidden = false
+            return
+        }
+        wrongLabel.isHidden = true
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
 }

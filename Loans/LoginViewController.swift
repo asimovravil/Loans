@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     let buttonRegister = UIButton(type: .system)
     let buttonForgot = UIButton(type: .system)
     let passwordVisibilityToggle = UIButton(type: .custom)
+    let wrongLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,7 @@ extension LoginViewController {
         emailField.selectedLineColor = AppColor.yellowCustom.uiColor
         emailField.selectedTitleColor = AppColor.yellowCustom.uiColor
         emailField.keyboardType = .emailAddress
+        emailField.addTarget(self, action: #selector(validateEmail), for: .editingChanged)
         emailField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(emailField)
         
@@ -103,6 +105,15 @@ extension LoginViewController {
 
         passwordField.rightView = passwordVisibilityToggle
         passwordField.rightViewMode = .always
+        
+        wrongLabel.text = "*Неверный адрес электронной почты или \nпароль"
+        wrongLabel.textColor = AppColor.redCustom.uiColor
+        wrongLabel.font = UIFont(name: "Inter-Regular", size: 16)
+        wrongLabel.textAlignment = .left
+        wrongLabel.numberOfLines = 0
+        wrongLabel.isHidden = true
+        wrongLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(wrongLabel)
     }
     
     @objc private func togglePasswordVisibility() {
@@ -113,6 +124,10 @@ extension LoginViewController {
     }
 
     @objc func buttonLoginMeta() {
+        validateEmail()
+        
+        guard wrongLabel.isHidden else { return }
+        
         let savedEmail = UserDefaults.standard.string(forKey: "userEmail") ?? ""
         let savedPassword = UserDefaults.standard.string(forKey: "userPassword") ?? ""
 
@@ -121,9 +136,11 @@ extension LoginViewController {
             tabbarVC.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(tabbarVC, animated: true)
         } else {
+            wrongLabel.isHidden = false
             print("Неверные учетные данные")
         }
     }
+
 
     @objc func buttonRegisterMeta() {
         let registerVC = RegistrationViewController()
@@ -162,6 +179,10 @@ extension LoginViewController {
             
             buttonForgot.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 32),
             buttonForgot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            
+            wrongLabel.topAnchor.constraint(equalTo: buttonForgot.bottomAnchor, constant: 16),
+            wrongLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            wrongLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
@@ -175,5 +196,22 @@ extension LoginViewController {
                 buttonRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }
+    }
+}
+
+extension LoginViewController {
+
+    @objc func validateEmail() {
+        guard let email = emailField.text, isValidEmail(email) else {
+            wrongLabel.isHidden = false
+            return
+        }
+        wrongLabel.isHidden = true
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
 }

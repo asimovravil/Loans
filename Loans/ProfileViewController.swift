@@ -257,9 +257,9 @@ extension ProfileViewController {
     }
     
     @objc func popUpButtonDeleteMeta() {
-        let tabbarVC = TabBarViewController()
-        tabbarVC.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(tabbarVC, animated: true)
+        let onboVC = OnboardingViewController()
+        onboVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(onboVC, animated: true)
         
         UserDefaults.standard.removeObject(forKey: "userEmail")
         UserDefaults.standard.removeObject(forKey: "userPassword")

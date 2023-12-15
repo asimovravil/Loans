@@ -112,7 +112,6 @@ extension AmountViewController {
         wrongLabel.text = "*Введите сумму от 5 000 ₽ до 5 000 000 ₽"
         wrongLabel.textColor = AppColor.redCustom.uiColor
         wrongLabel.font = UIFont(name: "Inter-Regular", size: 16)
-        wrongLabel.alpha = 0.50
         wrongLabel.textAlignment = .center
         wrongLabel.numberOfLines = 0
         wrongLabel.isHidden = true
