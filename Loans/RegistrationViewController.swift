@@ -22,6 +22,9 @@ class RegistrationViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -29,6 +32,12 @@ class RegistrationViewController: UIViewController {
         
         buttonRegister.layer.cornerRadius = 20
         buttonLogin.layer.cornerRadius = 20
+    }
+    
+    @objc private func dismissKeyboard() {
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        view.endEditing(true)
     }
 }
 
@@ -63,6 +72,7 @@ extension RegistrationViewController {
         emailField.font = UIFont(name: "Inter-Regular", size: 18)
         emailField.selectedLineColor = AppColor.yellowCustom.uiColor
         emailField.selectedTitleColor = AppColor.yellowCustom.uiColor
+        emailField.keyboardType = .emailAddress
         emailField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(emailField)
         
