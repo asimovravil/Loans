@@ -48,14 +48,14 @@ class WhiteLoansViewController: UIViewController {
             let section = self?.sections[sectionIndex] ?? .credit
             switch section {
             case .credit:
-                return self?.promoSectionLayout()
+                return self?.creditSection()
             case .loans:
-                return self?.mainSectionLayout()
+                return self?.loansSection()
             }
         }
     }
     
-    private func promoSectionLayout() -> NSCollectionLayoutSection {
+    private func creditSection() -> NSCollectionLayoutSection {
         // Item
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -77,7 +77,7 @@ class WhiteLoansViewController: UIViewController {
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
             leading: 16,
-            bottom: 15,
+            bottom: 0,
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
@@ -85,34 +85,34 @@ class WhiteLoansViewController: UIViewController {
         return section
     }
     
-    private func mainSectionLayout() -> NSCollectionLayoutSection {
+    private func loansSection() -> NSCollectionLayoutSection {
         // Item
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(169),
-                heightDimension: .absolute(191)
+                widthDimension: .fractionalWidth(390),
+                heightDimension: .absolute(90)
             )
         )
-        item.contentInsets.trailing = 20
         // Group
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(180)
+                heightDimension: .absolute(90)
             ),
             subitem: item,
-            count: 2
+            count: 1
         )
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 32
+        section.interGroupSpacing = 0
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
-            leading: 16,
+            leading: 0,
             bottom: 10,
-            trailing: -16
+            trailing: 0
         )
         section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+        
         return section
     }
     
@@ -161,7 +161,7 @@ extension WhiteLoansViewController {
             mainCollectionView.topAnchor.constraint(equalTo: warningImage.bottomAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
