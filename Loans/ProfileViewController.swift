@@ -276,6 +276,8 @@ extension ProfileViewController {
             tabBarController.tabBar.isHidden = true
         }
         
+        buttonEdit.isEnabled = false
+        
         blackOverlayView.isHidden = false
         popUpLeave.isHidden = false
         popUpButtonDelete.isHidden = false
@@ -293,6 +295,8 @@ extension ProfileViewController {
         if let tabBarController = self.tabBarController {
             tabBarController.tabBar.isHidden = true
         }
+        
+        buttonEdit.isEnabled = false
         
         blackOverlayView.isHidden = false
         popUpLeave.isHidden = false
