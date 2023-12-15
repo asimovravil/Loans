@@ -78,7 +78,6 @@ extension ForgotPasswordViewController {
 extension ForgotPasswordViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            forgotLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             forgotLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             emailField.topAnchor.constraint(equalTo: forgotLabel.bottomAnchor, constant: 40),
@@ -96,10 +95,12 @@ extension ForgotPasswordViewController {
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
+                forgotLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
                 buttonForgotPassword.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -68),
             ])
         } else {
             NSLayoutConstraint.activate([
+                forgotLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
                 buttonForgotPassword.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }

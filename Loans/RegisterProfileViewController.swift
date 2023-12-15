@@ -123,7 +123,6 @@ extension RegisterProfileViewController {
 extension RegisterProfileViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             dateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             lastNameField.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 40),
@@ -154,11 +153,11 @@ extension RegisterProfileViewController {
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
-                
+                dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             ])
         } else {
             NSLayoutConstraint.activate([
-                
+                dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             ])
         }
     }

@@ -17,13 +17,18 @@ class ProfileViewController: UIViewController {
     let phoneField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let buttonLeaveAccount = UIButton(type: .system)
     let buttonDeleteAccount = UIButton(type: .system)
+    let buttonSaveAccount = UIButton(type: .system)
     let passwordVisibilityToggle = UIButton(type: .custom)
+    let buttonEdit = UIButton(type: .custom)
+    let buttonLeft = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         setupConstraints()
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -34,6 +39,7 @@ class ProfileViewController: UIViewController {
         
         buttonLeaveAccount.layer.cornerRadius = 20
         buttonDeleteAccount.layer.cornerRadius = 20
+        buttonSaveAccount.layer.cornerRadius = 20
     }
     
     @objc private func dismissKeyboard() {
@@ -71,11 +77,20 @@ extension ProfileViewController {
         buttonDeleteAccount.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonDeleteAccount)
         
+        buttonSaveAccount.setTitle("Сохранить изменения", for: .normal)
+        buttonSaveAccount.setTitleColor(.black, for: .normal)
+        buttonSaveAccount.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
+        buttonSaveAccount.backgroundColor = AppColor.yellowCustom.uiColor
+        buttonSaveAccount.isHidden = true
+        buttonSaveAccount.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonSaveAccount)
+        
         lastNameField.placeholder = "Иванов"
         lastNameField.title = "Фамилия"
         lastNameField.font = UIFont(name: "Inter-Regular", size: 18)
         lastNameField.selectedLineColor = AppColor.yellowCustom.uiColor
         lastNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
+        lastNameField.isEnabled = false
         lastNameField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(lastNameField)
         
@@ -85,6 +100,7 @@ extension ProfileViewController {
         firstNameField.selectedLineColor = AppColor.yellowCustom.uiColor
         firstNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
         firstNameField.textContentType = .none
+        firstNameField.isEnabled = false
         firstNameField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(firstNameField)
         
@@ -94,6 +110,7 @@ extension ProfileViewController {
         middleNameField.selectedLineColor = AppColor.yellowCustom.uiColor
         middleNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
         middleNameField.textContentType = .none
+        middleNameField.isEnabled = false
         middleNameField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(middleNameField)
         
@@ -104,15 +121,66 @@ extension ProfileViewController {
         phoneField.selectedTitleColor = AppColor.yellowCustom.uiColor
         phoneField.textContentType = .none
         phoneField.keyboardType = .phonePad
+        phoneField.isEnabled = false
         phoneField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(phoneField)
+        
+        buttonEdit.setImage(UIImage(named: "edit"), for: .normal)
+        buttonEdit.addTarget(self, action: #selector(buttonEditMeta), for: .touchUpInside)
+        buttonEdit.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonEdit)
+        
+        buttonLeft.setImage(UIImage(named: "arrowLeft"), for: .normal)
+        buttonLeft.isHidden = true
+        buttonLeft.translatesAutoresizingMaskIntoConstraints = false
+        buttonLeft.addTarget(self, action: #selector(buttonLeftMete), for: .touchUpInside)
+        view.addSubview(buttonLeft)
+    }
+    
+    @objc func buttonEditMeta() {
+        UIView.animate(withDuration: 1) {
+            self.buttonEdit.isHidden = true
+            self.buttonLeft.isHidden = false
+            self.profileLabel.text = "Редактировать профиль"
+            
+            self.lastNameField.isEnabled = true
+            self.firstNameField.isEnabled = true
+            self.middleNameField.isEnabled = true
+            self.phoneField.isEnabled = true
+            
+            self.buttonLeaveAccount.isHidden = true
+            self.buttonDeleteAccount.isHidden = true
+            
+            self.buttonSaveAccount.isHidden = false
+            
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func buttonLeftMete() {
+        UIView.animate(withDuration: 1) {
+            self.buttonEdit.isHidden = false
+            self.buttonLeft.isHidden = true
+            self.profileLabel.text = "Профиль"
+            
+            self.lastNameField.isEnabled = false
+            self.firstNameField.isEnabled = false
+            self.middleNameField.isEnabled = false
+            self.phoneField.isEnabled = false
+            
+            self.buttonLeaveAccount.isHidden = false
+            self.buttonDeleteAccount.isHidden = false
+            
+            self.buttonSaveAccount.isHidden = true
+            
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
 extension ProfileViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            profileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             lastNameField.topAnchor.constraint(equalTo: profileLabel.bottomAnchor, constant: 40),
@@ -140,17 +208,33 @@ extension ProfileViewController {
                 .leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonDeleteAccount
                 .trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonDeleteAccount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -114),
             buttonDeleteAccount.heightAnchor.constraint(equalToConstant: 56),
+            
+            buttonSaveAccount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonSaveAccount
+                .trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonSaveAccount.heightAnchor.constraint(equalToConstant: 56),
+            
+            buttonEdit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            buttonLeft.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
-                
+                profileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+                buttonDeleteAccount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -114),
+                buttonSaveAccount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -114),
+                buttonEdit.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+                buttonLeft.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             ])
         } else {
             NSLayoutConstraint.activate([
-                
+                profileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+                buttonDeleteAccount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -74),
+                buttonSaveAccount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -74),
+                buttonEdit.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+                buttonLeft.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             ])
         }
     }

@@ -114,7 +114,6 @@ extension LoginViewController {
 extension LoginViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             emailField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 40),
@@ -140,10 +139,12 @@ extension LoginViewController {
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
+                loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
                 buttonRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -68),
             ])
         } else {
             NSLayoutConstraint.activate([
+                loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
                 buttonRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }

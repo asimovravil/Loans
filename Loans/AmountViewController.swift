@@ -142,11 +142,13 @@ extension AmountViewController {
             NSLayoutConstraint.activate([
                 amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 82),
                 privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -115),
+                loansAmount.heightAnchor.constraint(equalToConstant: 392),
             ])
         } else {
             NSLayoutConstraint.activate([
                 amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70),
+                loansAmount.heightAnchor.constraint(equalToConstant: 332),
             ])
         }
     }

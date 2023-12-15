@@ -107,7 +107,6 @@ extension RegistrationViewController {
 extension RegistrationViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            registerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             emailField.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 40),
@@ -130,10 +129,12 @@ extension RegistrationViewController {
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
+                registerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
                 buttonLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -68),
             ])
         } else {
             NSLayoutConstraint.activate([
+                registerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
                 buttonLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }

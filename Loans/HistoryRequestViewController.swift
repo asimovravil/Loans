@@ -47,7 +47,6 @@ extension HistoryRequestViewController {
 extension HistoryRequestViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            historyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             historyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             tableView.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: 40),
@@ -55,6 +54,16 @@ extension HistoryRequestViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        
+        if UIScreen.main.bounds.size.height >= 812 {
+            NSLayoutConstraint.activate([
+                historyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                historyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            ])
+        }
     }
 }
 
