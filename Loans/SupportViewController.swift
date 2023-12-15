@@ -59,6 +59,7 @@ extension SupportViewController {
         buttonContinue.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonContinue.backgroundColor = AppColor.yellowCustom.uiColor
         buttonContinue.translatesAutoresizingMaskIntoConstraints = false
+        buttonContinue.isEnabled = false
         buttonContinue.addTarget(self, action: #selector(buttonContinueMeta), for: .touchUpInside)
         view.addSubview(buttonContinue)
         
@@ -86,6 +87,7 @@ extension SupportViewController {
         messageField.selectedLineColor = AppColor.yellowCustom.uiColor
         messageField.selectedTitleColor = AppColor.yellowCustom.uiColor
         messageField.textContentType = .none
+        messageField.addTarget(self, action: #selector(messageFieldDidChange(_:)), for: .editingChanged)
         messageField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(messageField)
         
@@ -135,6 +137,14 @@ extension SupportViewController {
         popUpSubTitle.isHidden = true
         popUpSubTitle.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(popUpSubTitle)
+    }
+    
+    @objc func messageFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text, text.count >= 5 {
+            buttonContinue.isEnabled = true
+        } else {
+            buttonContinue.isEnabled = false
+        }
     }
     
     @objc func buttonContinueMeta() {
