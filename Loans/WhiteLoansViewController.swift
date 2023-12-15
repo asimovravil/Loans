@@ -161,7 +161,7 @@ extension WhiteLoansViewController {
             mainCollectionView.topAnchor.constraint(equalTo: warningImage.bottomAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
+            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
