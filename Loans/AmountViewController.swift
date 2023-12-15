@@ -120,7 +120,10 @@ extension AmountViewController {
     }
     
     @objc func amountButtonRequestMeta() {
-        if let amountText = loansField.text, let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")), amount >= 5000 {
+        if let amountText = loansField.text,
+           let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")),
+           amount >= 5000 {
+
             amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = true
 
@@ -132,20 +135,24 @@ extension AmountViewController {
 
             let isUserLoggedIn = UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPassword") != nil
 
-            if isUserLoggedIn {
-                let tabBarVC = TabBarViewController()
-                tabBarVC.navigationItem.hidesBackButton = true
-                self.navigationController?.pushViewController(tabBarVC, animated: true)
+            if self.tabBarController != nil {
             } else {
-                let registrationVC = RegistrationViewController()
-                registrationVC.navigationItem.hidesBackButton = true
-                self.navigationController?.pushViewController(registrationVC, animated: true)
+                if isUserLoggedIn {
+                    let tabBarVC = TabBarViewController()
+                    tabBarVC.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(tabBarVC, animated: true)
+                } else {
+                    let registrationVC = RegistrationViewController()
+                    registrationVC.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(registrationVC, animated: true)
+                }
             }
         } else {
             amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = false
         }
     }
+
 }
 
 extension AmountViewController {
