@@ -105,6 +105,53 @@ extension AmountViewController {
 
 extension AmountViewController {
     private func setupConstraints() {
+        if self.tabBarController != nil {
+            setupConstraintsWithTabBar()
+        } else {
+            setupConstraintsWithoutTabBar()
+        }
+    }
+    
+    private func setupConstraintsWithTabBar() {
+        NSLayoutConstraint.activate([
+            amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            amountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            loansAmount.topAnchor.constraint(equalTo: amountLabel.topAnchor, constant: -12),
+            loansAmount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
+            
+            loansField.topAnchor.constraint(equalTo: loansAmount.bottomAnchor, constant: 6),
+            loansField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            loansField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loansField.heightAnchor.constraint(equalToConstant: 80),
+            
+            amountSubLabel.topAnchor.constraint(equalTo: loansField.bottomAnchor, constant: 8),
+            amountSubLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            amountButtonRequest.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            amountButtonRequest.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            amountButtonRequest.bottomAnchor.constraint(equalTo: privacyLabel.topAnchor, constant: -24),
+            amountButtonRequest.heightAnchor.constraint(equalToConstant: 56),
+            
+            privacyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            privacyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            privacyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        
+        if UIScreen.main.bounds.size.height >= 812 {
+            NSLayoutConstraint.activate([
+                amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 82),
+                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -115),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            ])
+        }
+    }
+    
+    private func setupConstraintsWithoutTabBar() {
         NSLayoutConstraint.activate([
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             amountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
