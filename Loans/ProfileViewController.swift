@@ -233,9 +233,9 @@ extension ProfileViewController {
     }
     
     @objc func popUpButtonLeaveMeta() {
-        let tabbarVC = TabBarViewController()
-        tabbarVC.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(tabbarVC, animated: true)
+        let onboVC = OnboardingViewController()
+        onboVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(onboVC, animated: true)
     }
     
     @objc func popUpButtonCancelMeta() {
@@ -260,6 +260,13 @@ extension ProfileViewController {
         let tabbarVC = TabBarViewController()
         tabbarVC.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(tabbarVC, animated: true)
+        
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UserDefaults.standard.removeObject(forKey: "userPassword")
+        UserDefaults.standard.removeObject(forKey: "userLastName")
+        UserDefaults.standard.removeObject(forKey: "userFirstName")
+        UserDefaults.standard.removeObject(forKey: "userMiddleName")
+        UserDefaults.standard.removeObject(forKey: "userPhone")
     }
     
     @objc func buttonEditMeta() {
