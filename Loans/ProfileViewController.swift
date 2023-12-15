@@ -53,6 +53,22 @@ class ProfileViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
+        if let lastName = UserDefaults.standard.string(forKey: "userLastName") {
+            lastNameField.text = lastName
+        }
+
+        if let firstName = UserDefaults.standard.string(forKey: "userFirstName") {
+            firstNameField.text = firstName
+        }
+
+        if let middleName = UserDefaults.standard.string(forKey: "userMiddleName") {
+            middleNameField.text = middleName
+        }
+
+        if let phone = UserDefaults.standard.string(forKey: "userPhone") {
+            phoneField.text = phone
+        }
     }
     
     override func viewDidLayoutSubviews() {
