@@ -15,6 +15,7 @@ class AmountViewController: UIViewController {
     let amountSubLabel = UILabel()
     let amountButtonRequest = UIButton(type: .system)
     let privacyLabel = UILabel()
+    let wrongLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +62,10 @@ extension AmountViewController {
         loansField.font = UIFont(name: "Inter-SemiBold", size: 40)
         loansField.textAlignment = .center
         loansField.textColor = .black
-        loansField.keyboardType = .default
+        loansField.keyboardType = .numberPad
         loansField.backgroundColor = AppColor.yellowLightCustom.uiColor
         loansField.translatesAutoresizingMaskIntoConstraints = false
+        loansField.addTarget(self, action: #selector(loansFieldChanged), for: .editingChanged)
         view.addSubview(loansField)
         
         amountSubLabel.text = "Сумма займа"
@@ -79,6 +81,7 @@ extension AmountViewController {
         amountButtonRequest.setTitleColor(.black, for: .normal)
         amountButtonRequest.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         amountButtonRequest.backgroundColor = AppColor.yellowCustom.uiColor
+        amountButtonRequest.isEnabled = false
         amountButtonRequest.translatesAutoresizingMaskIntoConstraints = false
         amountButtonRequest.addTarget(self, action: #selector(amountButtonRequestMeta), for: .touchUpInside)
         view.addSubview(amountButtonRequest)
@@ -101,12 +104,32 @@ extension AmountViewController {
         privacyLabel.numberOfLines = 2
         privacyLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(privacyLabel)
+        
+        wrongLabel.text = "*Введите сумму от 5 000 ₽ до 5 000 000 ₽"
+        wrongLabel.textColor = AppColor.redCustom.uiColor
+        wrongLabel.font = UIFont(name: "Inter-Regular", size: 16)
+        wrongLabel.alpha = 0.50
+        wrongLabel.textAlignment = .center
+        wrongLabel.numberOfLines = 0
+        wrongLabel.isHidden = true
+        wrongLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(wrongLabel)
     }
     
     @objc func amountButtonRequestMeta() {
         let registerVC = RegistrationViewController()
         registerVC.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(registerVC, animated: true)
+    }
+    
+    @objc private func loansFieldChanged() {
+        if let amountText = loansField.text, let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")), amount >= 5000 {
+            amountButtonRequest.isEnabled = true
+            wrongLabel.isHidden = true
+        } else {
+            amountButtonRequest.isEnabled = false
+            wrongLabel.isHidden = false
+        }
     }
 }
 
@@ -184,6 +207,9 @@ extension AmountViewController {
             privacyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             privacyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             privacyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            wrongLabel.topAnchor.constraint(equalTo: amountSubLabel.bottomAnchor, constant: 8),
+            wrongLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
