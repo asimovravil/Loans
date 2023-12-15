@@ -60,6 +60,7 @@ extension RegisterProfileViewController {
         buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonRegister.backgroundColor = AppColor.yellowCustom.uiColor
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
+        buttonRegister.addTarget(self, action: #selector(buttonRegisterMeta), for: .touchUpInside)
         view.addSubview(buttonRegister)
         
         lastNameField.placeholder = "Иванов"
@@ -116,6 +117,12 @@ extension RegisterProfileViewController {
         privacyLabel.numberOfLines = 2
         privacyLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(privacyLabel)
+    }
+    
+    @objc func buttonRegisterMeta() {
+        let requestSuccessVC = RequestSuccessViewController()
+        requestSuccessVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(requestSuccessVC, animated: true)
     }
 }
 

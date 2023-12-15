@@ -80,6 +80,7 @@ extension AmountViewController {
         amountButtonRequest.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         amountButtonRequest.backgroundColor = AppColor.yellowCustom.uiColor
         amountButtonRequest.translatesAutoresizingMaskIntoConstraints = false
+        amountButtonRequest.addTarget(self, action: #selector(amountButtonRequestMeta), for: .touchUpInside)
         view.addSubview(amountButtonRequest)
         
         let privacyText = "Нажимая кнопку вы соглашаетесь с\nправилами выдачи займов"
@@ -100,6 +101,12 @@ extension AmountViewController {
         privacyLabel.numberOfLines = 2
         privacyLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(privacyLabel)
+    }
+    
+    @objc func amountButtonRequestMeta() {
+        let registerVC = RegistrationViewController()
+        registerVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(registerVC, animated: true)
     }
 }
 

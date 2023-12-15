@@ -59,6 +59,7 @@ extension LoginViewController {
         buttonLogin.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonLogin.backgroundColor = AppColor.yellowCustom.uiColor
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
+        buttonLogin.addTarget(self, action: #selector(buttonLoginMeta), for: .touchUpInside)
         view.addSubview(buttonLogin)
         
         buttonRegister.setTitle("Регистрация", for: .normal)
@@ -66,6 +67,7 @@ extension LoginViewController {
         buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonRegister.backgroundColor = AppColor.yellowLightCustom.uiColor
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
+        buttonRegister.addTarget(self, action: #selector(buttonRegisterMeta), for: .touchUpInside)
         view.addSubview(buttonRegister)
         
         emailField.placeholder = "example@gmail.com"
@@ -91,6 +93,7 @@ extension LoginViewController {
         buttonForgot.setTitleColor(AppColor.yellowCustom.uiColor, for: .normal)
         buttonForgot.titleLabel?.font = UIFont(name: "Inter-Regular", size: 16)
         buttonForgot.translatesAutoresizingMaskIntoConstraints = false
+        buttonForgot.addTarget(self, action: #selector(buttonForgotMeta), for: .touchUpInside)
         view.addSubview(buttonForgot)
         
         let eyeImage = UIImage(named: "eye")
@@ -109,6 +112,23 @@ extension LoginViewController {
         passwordVisibilityToggle.setImage(eyeImage, for: .normal)
     }
 
+    @objc func buttonLoginMeta() {
+        let tabbarVC = TabBarViewController()
+        tabbarVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(tabbarVC, animated: true)
+    }
+    
+    @objc func buttonRegisterMeta() {
+        let registerVC = RegistrationViewController()
+        registerVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(registerVC, animated: true)
+    }
+    
+    @objc func buttonForgotMeta() {
+        let forgotVC = ForgotPasswordViewController()
+        forgotVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(forgotVC, animated: true)
+    }
 }
 
 extension LoginViewController {

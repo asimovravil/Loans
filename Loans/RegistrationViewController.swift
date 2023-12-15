@@ -58,6 +58,7 @@ extension RegistrationViewController {
         buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonRegister.backgroundColor = AppColor.yellowCustom.uiColor
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
+        buttonRegister.addTarget(self, action: #selector(buttonRegisterMeta), for: .touchUpInside)
         view.addSubview(buttonRegister)
         
         buttonLogin.setTitle("Войти", for: .normal)
@@ -65,6 +66,7 @@ extension RegistrationViewController {
         buttonLogin.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonLogin.backgroundColor = AppColor.yellowLightCustom.uiColor
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
+        buttonLogin.addTarget(self, action: #selector(buttonLoginMeta), for: .touchUpInside)
         view.addSubview(buttonLogin)
         
         emailField.placeholder = "example@gmail.com"
@@ -102,6 +104,17 @@ extension RegistrationViewController {
         passwordVisibilityToggle.setImage(eyeImage, for: .normal)
     }
 
+    @objc func buttonLoginMeta() {
+        let loginVC = LoginViewController()
+        loginVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    @objc func buttonRegisterMeta() {
+        let registerProfileVC = RegisterProfileViewController()
+        registerProfileVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(registerProfileVC, animated: true)
+    }
 }
 
 extension RegistrationViewController {

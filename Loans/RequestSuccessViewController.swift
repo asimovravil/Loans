@@ -57,13 +57,14 @@ extension RequestSuccessViewController {
         buttonOnbo.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonOnbo.backgroundColor = AppColor.yellowCustom.uiColor
         buttonOnbo.translatesAutoresizingMaskIntoConstraints = false
+        buttonOnbo.addTarget(self, action: #selector(buttonOnboMeta), for: .touchUpInside)
         view.addSubview(buttonOnbo)
     }
     
     @objc func buttonOnboMeta() {
-        let amountVC = AmountViewController()
-        amountVC.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(amountVC, animated: true)
+        let tabbarVC = TabBarViewController()
+        tabbarVC.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(tabbarVC, animated: true)
     }
 }
 
