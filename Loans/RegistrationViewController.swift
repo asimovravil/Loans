@@ -114,6 +114,9 @@ extension RegistrationViewController {
         let registerProfileVC = RegisterProfileViewController()
         registerProfileVC.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(registerProfileVC, animated: true)
+        
+        UserDefaults.standard.set(emailField.text, forKey: "userEmail")
+        UserDefaults.standard.set(passwordField.text, forKey: "userPassword")
     }
 }
 

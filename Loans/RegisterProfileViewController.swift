@@ -138,6 +138,11 @@ extension RegisterProfileViewController {
         let requestSuccessVC = RequestSuccessViewController()
         requestSuccessVC.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(requestSuccessVC, animated: true)
+        
+        UserDefaults.standard.set(lastNameField.text, forKey: "userLastName")
+        UserDefaults.standard.set(firstNameField.text, forKey: "userFirstName")
+        UserDefaults.standard.set(middleNameField.text, forKey: "userMiddleName")
+        UserDefaults.standard.set(phoneField.text, forKey: "userPhone")
     }
 }
 
