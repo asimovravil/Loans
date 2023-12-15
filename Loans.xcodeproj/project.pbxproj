@@ -16,6 +16,8 @@
 		F15352622B2C03EC0020B6BC /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352612B2C03EC0020B6BC /* HistoryCell.swift */; };
 		F15352642B2C09840020B6BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352632B2C09840020B6BC /* ProfileViewController.swift */; };
 		F15352682B2C1B400020B6BC /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352672B2C1B400020B6BC /* SupportViewController.swift */; };
+		F153526A2B2C209F0020B6BC /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352692B2C209F0020B6BC /* FAQViewController.swift */; };
+		F153526C2B2C21A70020B6BC /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153526B2B2C21A70020B6BC /* FAQCell.swift */; };
 		F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB02B2B29B100E7F293 /* AppDelegate.swift */; };
 		F184AFB32B2B29B100E7F293 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */; };
 		F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */; };
@@ -46,6 +48,8 @@
 		F15352612B2C03EC0020B6BC /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		F15352632B2C09840020B6BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F15352672B2C1B400020B6BC /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		F15352692B2C209F0020B6BC /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		F153526B2B2C21A70020B6BC /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
 		F184AFAD2B2B29B100E7F293 /* Loans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F184AFB02B2B29B100E7F293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				F15352612B2C03EC0020B6BC /* HistoryCell.swift */,
 				F15352632B2C09840020B6BC /* ProfileViewController.swift */,
 				F15352672B2C1B400020B6BC /* SupportViewController.swift */,
+				F15352692B2C209F0020B6BC /* FAQViewController.swift */,
+				F153526B2B2C21A70020B6BC /* FAQCell.swift */,
 				F184B0022B2B2E7400E7F293 /* AppColor .swift */,
 				F184AFB92B2B29B200E7F293 /* Assets.xcassets */,
 				F184AFBB2B2B29B200E7F293 /* LaunchScreen.storyboard */,
@@ -222,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F153526C2B2C21A70020B6BC /* FAQCell.swift in Sources */,
 				F153525A2B2BFD1E0020B6BC /* LoginViewController.swift in Sources */,
 				F184B0072B2B383A00E7F293 /* RegistrationViewController.swift in Sources */,
 				F153525E2B2C00560020B6BC /* TabBarViewController.swift in Sources */,
@@ -231,6 +238,7 @@
 				F15352562B2BF8BF0020B6BC /* RegisterProfileViewController.swift in Sources */,
 				F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */,
 				F15352682B2C1B400020B6BC /* SupportViewController.swift in Sources */,
+				F153526A2B2C209F0020B6BC /* FAQViewController.swift in Sources */,
 				F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */,
 				F153525C2B2BFE720020B6BC /* ForgotPasswordViewController.swift in Sources */,
 				F184B0032B2B2E7400E7F293 /* AppColor .swift in Sources */,
