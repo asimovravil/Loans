@@ -28,6 +28,9 @@ class SupportViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,6 +38,13 @@ class SupportViewController: UIViewController {
         
         buttonContinue.layer.cornerRadius = 20
         popUpButton.layer.cornerRadius = 20
+    }
+    
+    @objc private func dismissKeyboard() {
+        FIOField.resignFirstResponder()
+        phoneField.resignFirstResponder()
+        messageField.resignFirstResponder()
+        view.endEditing(true)
     }
     
     private lazy var phoneListener: MaskedTextFieldDelegate = {
