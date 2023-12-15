@@ -18,6 +18,10 @@
 		F15352682B2C1B400020B6BC /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352672B2C1B400020B6BC /* SupportViewController.swift */; };
 		F153526A2B2C209F0020B6BC /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352692B2C209F0020B6BC /* FAQViewController.swift */; };
 		F153526C2B2C21A70020B6BC /* FAQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153526B2B2C21A70020B6BC /* FAQCell.swift */; };
+		F153526E2B2C3A160020B6BC /* TabBarWhiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153526D2B2C3A160020B6BC /* TabBarWhiteViewController.swift */; };
+		F15352702B2C3B900020B6BC /* WhiteLoansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153526F2B2C3B900020B6BC /* WhiteLoansViewController.swift */; };
+		F15352722B2C3E970020B6BC /* CreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352712B2C3E970020B6BC /* CreditCell.swift */; };
+		F15352742B2C3EA10020B6BC /* LoansCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352732B2C3EA10020B6BC /* LoansCell.swift */; };
 		F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB02B2B29B100E7F293 /* AppDelegate.swift */; };
 		F184AFB32B2B29B100E7F293 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */; };
 		F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */; };
@@ -50,6 +54,10 @@
 		F15352672B2C1B400020B6BC /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		F15352692B2C209F0020B6BC /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		F153526B2B2C21A70020B6BC /* FAQCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQCell.swift; sourceTree = "<group>"; };
+		F153526D2B2C3A160020B6BC /* TabBarWhiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarWhiteViewController.swift; sourceTree = "<group>"; };
+		F153526F2B2C3B900020B6BC /* WhiteLoansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteLoansViewController.swift; sourceTree = "<group>"; };
+		F15352712B2C3E970020B6BC /* CreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCell.swift; sourceTree = "<group>"; };
+		F15352732B2C3EA10020B6BC /* LoansCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCell.swift; sourceTree = "<group>"; };
 		F184AFAD2B2B29B100E7F293 /* Loans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F184AFB02B2B29B100E7F293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +127,10 @@
 				F15352672B2C1B400020B6BC /* SupportViewController.swift */,
 				F15352692B2C209F0020B6BC /* FAQViewController.swift */,
 				F153526B2B2C21A70020B6BC /* FAQCell.swift */,
+				F153526D2B2C3A160020B6BC /* TabBarWhiteViewController.swift */,
+				F153526F2B2C3B900020B6BC /* WhiteLoansViewController.swift */,
+				F15352712B2C3E970020B6BC /* CreditCell.swift */,
+				F15352732B2C3EA10020B6BC /* LoansCell.swift */,
 				F184B0022B2B2E7400E7F293 /* AppColor .swift */,
 				F184AFB92B2B29B200E7F293 /* Assets.xcassets */,
 				F184AFBB2B2B29B200E7F293 /* LaunchScreen.storyboard */,
@@ -236,7 +248,10 @@
 				F15352642B2C09840020B6BC /* ProfileViewController.swift in Sources */,
 				F184B0052B2B31DF00E7F293 /* AmountViewController.swift in Sources */,
 				F15352562B2BF8BF0020B6BC /* RegisterProfileViewController.swift in Sources */,
+				F15352742B2C3EA10020B6BC /* LoansCell.swift in Sources */,
 				F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */,
+				F15352702B2C3B900020B6BC /* WhiteLoansViewController.swift in Sources */,
+				F15352722B2C3E970020B6BC /* CreditCell.swift in Sources */,
 				F15352682B2C1B400020B6BC /* SupportViewController.swift in Sources */,
 				F153526A2B2C209F0020B6BC /* FAQViewController.swift in Sources */,
 				F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */,
@@ -244,6 +259,7 @@
 				F184B0032B2B2E7400E7F293 /* AppColor .swift in Sources */,
 				F15352582B2BFBBE0020B6BC /* RequestSuccessViewController.swift in Sources */,
 				F184AFB32B2B29B100E7F293 /* SceneDelegate.swift in Sources */,
+				F153526E2B2C3A160020B6BC /* TabBarWhiteViewController.swift in Sources */,
 				F15352602B2C03790020B6BC /* HistoryRequestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

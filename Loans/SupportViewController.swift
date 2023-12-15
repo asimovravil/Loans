@@ -27,25 +27,11 @@ class SupportViewController: UIViewController {
 
         setupUI()
         setupConstraints()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        buttonContinue.layer.cornerRadius = 20
-        popUpSupport.layer.cornerRadius = 20
-        popUpButton.layer.cornerRadius = 20
-    }
-    
-    @objc private func dismissKeyboard() {
-        FIOField.resignFirstResponder()
-        phoneField.resignFirstResponder()
-        messageField.resignFirstResponder()
-        phoneField.resignFirstResponder()
-        view.endEditing(true)
     }
 }
 
