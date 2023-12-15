@@ -17,7 +17,7 @@ class TabBarWhiteViewController: UITabBarController {
         
     private func addedTabBarSetup() {
         let tab1 = UINavigationController(rootViewController: WhiteLoansViewController())
-        let tab2 = UINavigationController(rootViewController: HistoryRequestViewController())
+        let tab2 = UINavigationController(rootViewController: WhiteCardsViewController())
         let tab3 = ProfileViewController()
         let tab4 = UINavigationController(rootViewController: SupportViewController())
         let tab5 = UINavigationController(rootViewController: FAQViewController())
