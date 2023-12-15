@@ -113,11 +113,18 @@ extension LoginViewController {
     }
 
     @objc func buttonLoginMeta() {
-        let tabbarVC = TabBarViewController()
-        tabbarVC.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(tabbarVC, animated: true)
+        let savedEmail = UserDefaults.standard.string(forKey: "userEmail") ?? ""
+        let savedPassword = UserDefaults.standard.string(forKey: "userPassword") ?? ""
+
+        if emailField.text == savedEmail && passwordField.text == savedPassword {
+            let tabbarVC = TabBarViewController()
+            tabbarVC.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(tabbarVC, animated: true)
+        } else {
+            print("Неверные учетные данные")
+        }
     }
-    
+
     @objc func buttonRegisterMeta() {
         let registerVC = RegistrationViewController()
         registerVC.navigationItem.hidesBackButton = true
