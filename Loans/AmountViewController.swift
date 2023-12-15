@@ -130,6 +130,18 @@ extension AmountViewController {
             let currentDate = dateFormatter.string(from: Date())
 
             delegate?.didReceiveNewLoanRequest(amount: amountText, date: currentDate)
+
+            let isUserLoggedIn = UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPassword") != nil
+
+            if isUserLoggedIn {
+                let tabBarVC = TabBarViewController()
+                tabBarVC.navigationItem.hidesBackButton = true
+                self.navigationController?.pushViewController(tabBarVC, animated: true)
+            } else {
+                let registrationVC = RegistrationViewController()
+                registrationVC.navigationItem.hidesBackButton = true
+                self.navigationController?.pushViewController(registrationVC, animated: true)
+            }
         } else {
             amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = false
