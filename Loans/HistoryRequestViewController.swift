@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LoanRequest {
+struct LoanRequest: Codable {
     var amount: String
     var date: String
 }
@@ -24,6 +24,27 @@ class HistoryRequestViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        loadLoanRequests()
+    }
+    
+    func saveLoanRequests() {
+        let encoder = JSONEncoder()
+        do {
+            let encoded = try encoder.encode(loanRequests)
+            UserDefaults.standard.set(encoded, forKey: "SavedLoanRequests")
+            UserDefaults.standard.synchronize()
+        } catch {
+            print("Error saving loan requests: \(error)")
+        }
+    }
+    
+    func loadLoanRequests() {
+        if let savedRequests = UserDefaults.standard.object(forKey: "SavedLoanRequests") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedRequests = try? decoder.decode([LoanRequest].self, from: savedRequests) {
+                loanRequests = loadedRequests
+            }
+        }
     }
 }
 
@@ -98,11 +119,9 @@ extension HistoryRequestViewController: UITableViewDataSource, UITableViewDelega
 
 extension HistoryRequestViewController: LoanRequestDelegate {
     func didReceiveNewLoanRequest(amount: String, date: String) {
-        print("didReceiveNewLoanRequest called with amount: \(amount) and date: \(date)")
-        DispatchQueue.main.async {
-            let newLoanRequest = LoanRequest(amount: amount, date: date)
-            self.loanRequests.append(newLoanRequest)
-            self.tableView.reloadData()
-        }
+        let newLoanRequest = LoanRequest(amount: amount, date: date)
+        loanRequests.append(newLoanRequest)
+        saveLoanRequests()
+        tableView.reloadData()
     }
 }
