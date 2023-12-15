@@ -29,4 +29,6 @@ enum AppColor: String, AppColorProtocol {
     
     case yellowCustom
     case yellowLightCustom
+    case redCustom
+    case redLightCustom
 }

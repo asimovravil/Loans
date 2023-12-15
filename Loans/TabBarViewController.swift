@@ -18,7 +18,7 @@ class TabBarViewController: UITabBarController {
     private func addedTabBarSetup() {
         let tab1 = UINavigationController(rootViewController: AmountViewController())
         let tab2 = UINavigationController(rootViewController: HistoryRequestViewController())
-        let tab3 = UINavigationController(rootViewController: RequestSuccessViewController())
+        let tab3 = UINavigationController(rootViewController: ProfileViewController())
         let tab4 = UINavigationController(rootViewController: RegistrationViewController())
         let tab5 = UINavigationController(rootViewController: LoginViewController())
         
