@@ -1,5 +1,5 @@
 //
-//  CardCell.swift
+//  CreditsWhiteCell.swift
 //  Loans
 //
 //  Created by Ravil on 15.12.2023.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CardCell: UITableViewCell {
+class CreditsWhiteCell: UITableViewCell {
     
-    static let reuseID = String(describing: CardCell.self)
+    static let reuseID = String(describing: CreditsWhiteCell.self)
     
     let logoImage = UIImageView()
     let amountLabel = UILabel()
@@ -31,7 +31,7 @@ class CardCell: UITableViewCell {
     }
 }
 
-extension CardCell {
+extension CreditsWhiteCell {
     private func setupUI() {
         logoImage.image = UIImage(named: "logo")
         logoImage.layer.masksToBounds = true
@@ -84,7 +84,7 @@ extension CardCell {
     }
 }
 
-extension CardCell {
+extension CreditsWhiteCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

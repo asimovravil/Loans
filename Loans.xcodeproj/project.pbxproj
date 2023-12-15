@@ -23,7 +23,9 @@
 		F15352722B2C3E970020B6BC /* CreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352712B2C3E970020B6BC /* CreditCell.swift */; };
 		F15352742B2C3EA10020B6BC /* LoansCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352732B2C3EA10020B6BC /* LoansCell.swift */; };
 		F15352762B2C4D7C0020B6BC /* WhiteCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352752B2C4D7C0020B6BC /* WhiteCardsViewController.swift */; };
-		F15352782B2C4F400020B6BC /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352772B2C4F400020B6BC /* CardCell.swift */; };
+		F15352782B2C4F400020B6BC /* CardWhiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352772B2C4F400020B6BC /* CardWhiteCell.swift */; };
+		F153527A2B2C52610020B6BC /* WhiteCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352792B2C52610020B6BC /* WhiteCreditsViewController.swift */; };
+		F153527C2B2C52720020B6BC /* CreditsWhiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153527B2B2C52720020B6BC /* CreditsWhiteCell.swift */; };
 		F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB02B2B29B100E7F293 /* AppDelegate.swift */; };
 		F184AFB32B2B29B100E7F293 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */; };
 		F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */; };
@@ -61,7 +63,9 @@
 		F15352712B2C3E970020B6BC /* CreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCell.swift; sourceTree = "<group>"; };
 		F15352732B2C3EA10020B6BC /* LoansCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansCell.swift; sourceTree = "<group>"; };
 		F15352752B2C4D7C0020B6BC /* WhiteCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteCardsViewController.swift; sourceTree = "<group>"; };
-		F15352772B2C4F400020B6BC /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		F15352772B2C4F400020B6BC /* CardWhiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWhiteCell.swift; sourceTree = "<group>"; };
+		F15352792B2C52610020B6BC /* WhiteCreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteCreditsViewController.swift; sourceTree = "<group>"; };
+		F153527B2B2C52720020B6BC /* CreditsWhiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsWhiteCell.swift; sourceTree = "<group>"; };
 		F184AFAD2B2B29B100E7F293 /* Loans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F184AFB02B2B29B100E7F293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +138,9 @@
 				F153526D2B2C3A160020B6BC /* TabBarWhiteViewController.swift */,
 				F153526F2B2C3B900020B6BC /* WhiteLoansViewController.swift */,
 				F15352752B2C4D7C0020B6BC /* WhiteCardsViewController.swift */,
-				F15352772B2C4F400020B6BC /* CardCell.swift */,
+				F15352792B2C52610020B6BC /* WhiteCreditsViewController.swift */,
+				F153527B2B2C52720020B6BC /* CreditsWhiteCell.swift */,
+				F15352772B2C4F400020B6BC /* CardWhiteCell.swift */,
 				F15352712B2C3E970020B6BC /* CreditCell.swift */,
 				F15352732B2C3EA10020B6BC /* LoansCell.swift */,
 				F184B0022B2B2E7400E7F293 /* AppColor .swift */,
@@ -248,7 +254,8 @@
 			files = (
 				F153526C2B2C21A70020B6BC /* FAQCell.swift in Sources */,
 				F153525A2B2BFD1E0020B6BC /* LoginViewController.swift in Sources */,
-				F15352782B2C4F400020B6BC /* CardCell.swift in Sources */,
+				F153527A2B2C52610020B6BC /* WhiteCreditsViewController.swift in Sources */,
+				F15352782B2C4F400020B6BC /* CardWhiteCell.swift in Sources */,
 				F184B0072B2B383A00E7F293 /* RegistrationViewController.swift in Sources */,
 				F153525E2B2C00560020B6BC /* TabBarViewController.swift in Sources */,
 				F15352622B2C03EC0020B6BC /* HistoryCell.swift in Sources */,
@@ -260,6 +267,7 @@
 				F15352702B2C3B900020B6BC /* WhiteLoansViewController.swift in Sources */,
 				F15352722B2C3E970020B6BC /* CreditCell.swift in Sources */,
 				F15352682B2C1B400020B6BC /* SupportViewController.swift in Sources */,
+				F153527C2B2C52720020B6BC /* CreditsWhiteCell.swift in Sources */,
 				F153526A2B2C209F0020B6BC /* FAQViewController.swift in Sources */,
 				F15352762B2C4D7C0020B6BC /* WhiteCardsViewController.swift in Sources */,
 				F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */,

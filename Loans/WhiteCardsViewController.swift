@@ -41,7 +41,7 @@ extension WhiteCardsViewController {
         cardSubLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cardSubLabel)
         
-        tableView.register(CardCell.self, forCellReuseIdentifier: CardCell.reuseID)
+        tableView.register(CardWhiteCell.self, forCellReuseIdentifier: CardWhiteCell.reuseID)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .clear
@@ -85,7 +85,7 @@ extension WhiteCardsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.reuseID, for: indexPath) as? CardCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardWhiteCell.reuseID, for: indexPath) as? CardWhiteCell else {
             fatalError("Could not cast to CardCell")
         }
         cell.selectionStyle = .none
