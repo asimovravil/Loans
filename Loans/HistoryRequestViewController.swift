@@ -7,7 +7,14 @@
 
 import UIKit
 
+struct LoanRequest {
+    var amount: String
+    var date: String
+}
+
 class HistoryRequestViewController: UIViewController {
+    
+    var loanRequests = [LoanRequest]()
 
     let historyLabel = UILabel()
     let tableView = UITableView(frame: .zero, style: .plain)
@@ -17,6 +24,8 @@ class HistoryRequestViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHistoryCell(_:)), name: NSNotification.Name("LoanAmountNotification"), object: nil)
     }
 }
 
@@ -65,11 +74,23 @@ extension HistoryRequestViewController {
             ])
         }
     }
+    
+    @objc private func updateHistoryCell(_ notification: Notification) {
+        if let userInfo = notification.userInfo as? [String: String],
+           let loanAmount = userInfo["loanAmount"],
+           let currentDate = userInfo["currentDate"] {
+            let newLoanRequest = LoanRequest(amount: loanAmount, date: currentDate)
+            loanRequests.append(newLoanRequest)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 extension HistoryRequestViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return loanRequests.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,6 +99,10 @@ extension HistoryRequestViewController: UITableViewDataSource, UITableViewDelega
         }
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
+        
+        let loanRequest = loanRequests[indexPath.row]
+        cell.labelAmount.text = loanRequest.amount
+        cell.descAmount.text = "На рассмотрении \(loanRequest.date)"
         return cell
     }
     

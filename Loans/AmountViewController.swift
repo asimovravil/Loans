@@ -126,6 +126,12 @@ extension AmountViewController {
         if let amountText = loansField.text, let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")), amount >= 5000 {
             amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = true
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let currentDate = dateFormatter.string(from: Date())
+            let userInfo = ["loanAmount": amountText, "currentDate": currentDate]
+            NotificationCenter.default.post(name: NSNotification.Name("LoanAmountNotification"), object: nil, userInfo: userInfo)
         } else {
             amountButtonRequest.isEnabled = false
             wrongLabel.isHidden = false
