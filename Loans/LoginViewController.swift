@@ -134,7 +134,7 @@ extension LoginViewController {
             buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             buttonRegister.heightAnchor.constraint(equalToConstant: 56),
             
-            buttonForgot.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 16),
+            buttonForgot.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 32),
             buttonForgot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
         ])
         
