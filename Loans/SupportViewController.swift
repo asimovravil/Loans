@@ -31,6 +31,15 @@ class SupportViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
+        let lastName = UserDefaults.standard.string(forKey: "userLastName") ?? ""
+        let firstName = UserDefaults.standard.string(forKey: "userFirstName") ?? ""
+        let middleName = UserDefaults.standard.string(forKey: "userMiddleName") ?? ""
+        let phone = UserDefaults.standard.string(forKey: "userPhone") ?? ""
+
+        FIOField.text = [lastName, firstName, middleName].joined(separator: " ")
+        
+        phoneField.text = phone
     }
     
     override func viewDidLayoutSubviews() {
