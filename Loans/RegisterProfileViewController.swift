@@ -7,6 +7,7 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import InputMask
 
 class RegisterProfileViewController: UIViewController {
 
@@ -17,6 +18,19 @@ class RegisterProfileViewController: UIViewController {
     let phoneField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let buttonRegister = UIButton(type: .system)
     let privacyLabel = UILabel()
+    
+    private lazy var phoneListener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
+            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+        return listener
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +110,7 @@ extension RegisterProfileViewController {
         phoneField.selectedTitleColor = AppColor.yellowCustom.uiColor
         phoneField.textContentType = .none
         phoneField.keyboardType = .phonePad
+        phoneField.delegate = phoneListener
         phoneField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(phoneField)
         

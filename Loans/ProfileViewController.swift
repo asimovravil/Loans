@@ -7,6 +7,7 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import InputMask
 
 class ProfileViewController: UIViewController {
     
@@ -28,6 +29,19 @@ class ProfileViewController: UIViewController {
     let popUpTitle = UILabel()
     let popUpSubTitle = UILabel()
     let blackOverlayView = UIView()
+    
+    private lazy var phoneListener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
+            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+        return listener
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +154,7 @@ extension ProfileViewController {
         phoneField.textContentType = .none
         phoneField.keyboardType = .phonePad
         phoneField.isEnabled = false
+        phoneField.delegate = phoneListener
         phoneField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(phoneField)
         

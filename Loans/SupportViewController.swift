@@ -7,6 +7,7 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import InputMask
 
 class SupportViewController: UIViewController {
 
@@ -35,6 +36,19 @@ class SupportViewController: UIViewController {
         buttonContinue.layer.cornerRadius = 20
         popUpButton.layer.cornerRadius = 20
     }
+    
+    private lazy var phoneListener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
+            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+        return listener
+    }()
 }
 
 extension SupportViewController {
@@ -78,6 +92,7 @@ extension SupportViewController {
         phoneField.selectedTitleColor = AppColor.yellowCustom.uiColor
         phoneField.textContentType = .none
         phoneField.keyboardType = .phonePad
+        phoneField.delegate = phoneListener
         phoneField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(phoneField)
         

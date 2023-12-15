@@ -26,6 +26,7 @@
 		F15352782B2C4F400020B6BC /* CardWhiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352772B2C4F400020B6BC /* CardWhiteCell.swift */; };
 		F153527A2B2C52610020B6BC /* WhiteCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15352792B2C52610020B6BC /* WhiteCreditsViewController.swift */; };
 		F153527C2B2C52720020B6BC /* CreditsWhiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F153527B2B2C52720020B6BC /* CreditsWhiteCell.swift */; };
+		F15352822B2C66D10020B6BC /* InputMask in Frameworks */ = {isa = PBXBuildFile; productRef = F15352812B2C66D10020B6BC /* InputMask */; };
 		F184AFB12B2B29B100E7F293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB02B2B29B100E7F293 /* AppDelegate.swift */; };
 		F184AFB32B2B29B100E7F293 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB22B2B29B100E7F293 /* SceneDelegate.swift */; };
 		F184AFB52B2B29B100E7F293 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F184AFB42B2B29B100E7F293 /* OnboardingViewController.swift */; };
@@ -93,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F184B00A2B2B3BE700E7F293 /* SkyFloatingLabelTextField in Frameworks */,
+				F15352822B2C66D10020B6BC /* InputMask in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +187,7 @@
 			name = Loans;
 			packageProductDependencies = (
 				F184B0092B2B3BE700E7F293 /* SkyFloatingLabelTextField */,
+				F15352812B2C66D10020B6BC /* InputMask */,
 			);
 			productName = Loans;
 			productReference = F184AFAD2B2B29B100E7F293 /* Loans.app */;
@@ -216,6 +219,7 @@
 			mainGroup = F184AFA42B2B29B100E7F293;
 			packageReferences = (
 				F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
+				F15352802B2C66D10020B6BC /* XCRemoteSwiftPackageReference "input-mask-ios" */,
 			);
 			productRefGroup = F184AFAE2B2B29B100E7F293 /* Products */;
 			projectDirPath = "";
@@ -491,6 +495,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F15352802B2C66D10020B6BC /* XCRemoteSwiftPackageReference "input-mask-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RedMadRobot/input-mask-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
 		F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
@@ -502,6 +514,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F15352812B2C66D10020B6BC /* InputMask */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15352802B2C66D10020B6BC /* XCRemoteSwiftPackageReference "input-mask-ios" */;
+			productName = InputMask;
+		};
 		F184B0092B2B3BE700E7F293 /* SkyFloatingLabelTextField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F184B0082B2B3BE700E7F293 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
