@@ -1,20 +1,21 @@
 //
-//  RegistrationViewController.swift
+//  LoginViewController.swift
 //  Loans
 //
-//  Created by Ravil on 14.12.2023.
+//  Created by Ravil on 15.12.2023.
 //
 
 import UIKit
 import SkyFloatingLabelTextField
 
-class RegistrationViewController: UIViewController {
+class LoginViewController: UIViewController {
 
-    let registerLabel = UILabel()
+    let loginLabel = UILabel()
     let emailField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let passwordField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
-    let buttonRegister = UIButton(type: .system)
     let buttonLogin = UIButton(type: .system)
+    let buttonRegister = UIButton(type: .system)
+    let buttonForgot = UIButton(type: .system)
     let passwordVisibilityToggle = UIButton(type: .custom)
     
     override func viewDidLoad() {
@@ -30,8 +31,8 @@ class RegistrationViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        buttonRegister.layer.cornerRadius = 20
         buttonLogin.layer.cornerRadius = 20
+        buttonRegister.layer.cornerRadius = 20
     }
     
     @objc private func dismissKeyboard() {
@@ -41,31 +42,31 @@ class RegistrationViewController: UIViewController {
     }
 }
 
-extension RegistrationViewController {
+extension LoginViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        registerLabel.text = "Регистрация"
-        registerLabel.textColor = .black
-        registerLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
-        registerLabel.textAlignment = .center
-        registerLabel.numberOfLines = 0
-        registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(registerLabel)
-        
-        buttonRegister.setTitle("Регистрация", for: .normal)
-        buttonRegister.setTitleColor(.black, for: .normal)
-        buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
-        buttonRegister.backgroundColor = AppColor.yellowCustom.uiColor
-        buttonRegister.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(buttonRegister)
+        loginLabel.text = "Добро пожаловать!"
+        loginLabel.textColor = .black
+        loginLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
+        loginLabel.textAlignment = .center
+        loginLabel.numberOfLines = 0
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loginLabel)
         
         buttonLogin.setTitle("Войти", for: .normal)
         buttonLogin.setTitleColor(.black, for: .normal)
         buttonLogin.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
-        buttonLogin.backgroundColor = AppColor.yellowLightCustom.uiColor
+        buttonLogin.backgroundColor = AppColor.yellowCustom.uiColor
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonLogin)
+        
+        buttonRegister.setTitle("Регистрация", for: .normal)
+        buttonRegister.setTitleColor(.black, for: .normal)
+        buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
+        buttonRegister.backgroundColor = AppColor.yellowLightCustom.uiColor
+        buttonRegister.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonRegister)
         
         emailField.placeholder = "example@gmail.com"
         emailField.title = "Почта"
@@ -86,6 +87,12 @@ extension RegistrationViewController {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(passwordField)
         
+        buttonForgot.setTitle("Забыли пароль?", for: .normal)
+        buttonForgot.setTitleColor(AppColor.yellowCustom.uiColor, for: .normal)
+        buttonForgot.titleLabel?.font = UIFont(name: "Inter-Regular", size: 16)
+        buttonForgot.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonForgot)
+        
         let eyeImage = UIImage(named: "eye")
         passwordVisibilityToggle.setImage(eyeImage, for: .normal)
         passwordVisibilityToggle.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
@@ -104,13 +111,13 @@ extension RegistrationViewController {
 
 }
 
-extension RegistrationViewController {
+extension LoginViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            registerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
-            registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            emailField.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 40),
+            emailField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 40),
             emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
@@ -118,23 +125,26 @@ extension RegistrationViewController {
             passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonRegister.bottomAnchor.constraint(equalTo: buttonLogin.topAnchor, constant: -24),
-            buttonRegister.heightAnchor.constraint(equalToConstant: 56),
-            
             buttonLogin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonLogin.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonLogin.bottomAnchor.constraint(equalTo: buttonRegister.topAnchor, constant: -24),
             buttonLogin.heightAnchor.constraint(equalToConstant: 56),
+            
+            buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonRegister.heightAnchor.constraint(equalToConstant: 56),
+            
+            buttonForgot.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 16),
+            buttonForgot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
-                buttonLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -68),
+                buttonRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -68),
             ])
         } else {
             NSLayoutConstraint.activate([
-                buttonLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+                buttonRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             ])
         }
     }

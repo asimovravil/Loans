@@ -15,7 +15,7 @@ class RegisterProfileViewController: UIViewController {
     let firstNameField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let middleNameField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let phoneField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
-    let buttonRegister = UIButton()
+    let buttonRegister = UIButton(type: .system)
     let passwordVisibilityToggle = UIButton(type: .custom)
     let privacyLabel = UILabel()
     

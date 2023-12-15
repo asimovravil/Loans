@@ -14,7 +14,7 @@ class OnboardingViewController: UIViewController {
     let moneyLabel = UILabel()
     let titleLabel = UILabel()
     let imageOnbo = UIImageView()
-    let buttonOnbo = UIButton()
+    let buttonOnbo = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,7 +13,7 @@ class AmountViewController: UIViewController {
     let loansAmount = UIImageView()
     let loansField = UITextField()
     let amountSubLabel = UILabel()
-    let amountButtonRequest = UIButton()
+    let amountButtonRequest = UIButton(type: .system)
     let privacyLabel = UILabel()
 
     override func viewDidLoad() {
