@@ -19,9 +19,18 @@ class FAQViewController: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
     
     var data = [
-        CellData(question: "Вопрос 1", answer: "Ответ 1"),
-        CellData(question: "Вопрос 2", answer: "Ответ 2"),
+        CellData(question: "Что такое займ?", answer: "Займ - это денежное обязательство, которое одна сторона берет у другой стороны с обязательством вернуть его с уплатой процентов."),
+        CellData(question: "Какие виды займов существуют?", answer: "Существует множество видов займов, включая потребительские займы, ипотеки, кредитные карты, микрозаймы и др."),
+        CellData(question: "Разница - кредитом и займом?", answer: "Основное отличие между кредитом и займом заключается в том, что кредит предоставляется банком, а займ - частными организациями или лицами."),
+        CellData(question: "Процентная ставка по займу это?", answer: "Процентная ставка по займу - это процент, который заемщик обязан выплатить сверх суммы займа как вознаграждение за пользование деньгами."),
+        CellData(question: "Документы для займа", answer: "Документы могут варьироваться, но обычно требуются удостоверение личности, справка о доходах и банковские реквизиты."),
+        CellData(question: "Что такое кредитный рейтинг?", answer: "Кредитный рейтинг - это числовая оценка, отражающая кредитоспособность заемщика. Он влияет на возможность получения займа и условия его предоставления."),
+        CellData(question: "Какие риски связаны с займами?", answer: "Риски могут включать высокие проценты, задолженность, потерю имущества при невыплате, и повреждение кредитного рейтинга."),
+        CellData(question: "Советы по управлению займами?", answer: "Управляйте финансами, следите за кредитным рейтингом, берите займы только при необходимости и сравнивайте условия разных кредиторов."),
+        CellData(question: "Что такое займ под залог?", answer: "Займ под залог - это займ, для получения которого заемщик предоставляет в залог какое-либо имущество или ценности."),
+        CellData(question: "Вернуть займ раньше срока", answer: "Да, обычно можно вернуть займ раньше срока, но могут быть условия и штрафы за досрочное погашение."),
     ]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +72,7 @@ extension FAQViewController {
             tableView.topAnchor.constraint(equalTo: FAQLabel.bottomAnchor, constant: 40),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
@@ -102,7 +111,6 @@ extension FAQViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
-
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return data[indexPath.row].isExpanded ? 99 : 64
