@@ -45,7 +45,7 @@ extension WhiteCardsViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .clear
-        tableView.rowHeight = 103
+        tableView.rowHeight = 113
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false

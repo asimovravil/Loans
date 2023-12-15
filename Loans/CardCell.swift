@@ -93,8 +93,8 @@ extension CardCell {
             amountLabel.topAnchor.constraint(equalTo: logoImage.topAnchor),
             amountLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 16),
             
+            percentLabel.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: 4),
             percentLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 16),
-            percentLabel.bottomAnchor.constraint(equalTo: logoImage.bottomAnchor),
             
             webLoansLabel.topAnchor.constraint(equalTo: percentLabel.bottomAnchor, constant: 4),
             webLoansLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 16),
