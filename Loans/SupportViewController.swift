@@ -14,8 +14,13 @@ class SupportViewController: UIViewController {
     let FIOField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let phoneField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let messageField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
-    let buttonRegister = UIButton(type: .system)
+    let buttonContinue = UIButton(type: .system)
     let privacyLabel = UILabel()
+    let popUpSupport = UIView()
+    let popUpTitle = UILabel()
+    let popUpSubTitle = UILabel()
+    let popUpButton = UIButton(type: .system)
+    let blackOverlayView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,9 @@ class SupportViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        buttonRegister.layer.cornerRadius = 20
+        buttonContinue.layer.cornerRadius = 20
+        popUpSupport.layer.cornerRadius = 20
+        popUpButton.layer.cornerRadius = 20
     }
     
     @objc private func dismissKeyboard() {
@@ -46,6 +53,11 @@ extension SupportViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
+        blackOverlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        blackOverlayView.translatesAutoresizingMaskIntoConstraints = false
+        blackOverlayView.isHidden = true
+        view.addSubview(blackOverlayView)
+        
         supportLabel.text = "Связь с менеджером"
         supportLabel.textColor = .black
         supportLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
@@ -54,12 +66,13 @@ extension SupportViewController {
         supportLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(supportLabel)
         
-        buttonRegister.setTitle("Отправить", for: .normal)
-        buttonRegister.setTitleColor(.black, for: .normal)
-        buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
-        buttonRegister.backgroundColor = AppColor.yellowCustom.uiColor
-        buttonRegister.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(buttonRegister)
+        buttonContinue.setTitle("Отправить", for: .normal)
+        buttonContinue.setTitleColor(.black, for: .normal)
+        buttonContinue.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
+        buttonContinue.backgroundColor = AppColor.yellowCustom.uiColor
+        buttonContinue.translatesAutoresizingMaskIntoConstraints = false
+        buttonContinue.addTarget(self, action: #selector(buttonContinueMeta), for: .touchUpInside)
+        view.addSubview(buttonContinue)
         
         FIOField.placeholder = "Иванов Иван Иванович"
         FIOField.title = "ФИО"
@@ -106,6 +119,69 @@ extension SupportViewController {
         privacyLabel.numberOfLines = 2
         privacyLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(privacyLabel)
+        
+        popUpSupport.backgroundColor = .white
+        popUpSupport.isHidden = true
+        popUpSupport.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(popUpSupport)
+        
+        popUpButton.setTitle("Продолжить", for: .normal)
+        popUpButton.setTitleColor(.black, for: .normal)
+        popUpButton.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
+        popUpButton.backgroundColor = AppColor.yellowCustom.uiColor
+        popUpButton.isHidden = true
+        popUpButton.translatesAutoresizingMaskIntoConstraints = false
+        popUpButton.addTarget(self, action: #selector(popUpButtonMeta), for: .touchUpInside)
+        view.addSubview(popUpButton)
+        
+        popUpTitle.textColor = .black
+        popUpTitle.font = UIFont(name: "Inter-SemiBold", size: 32)
+        popUpTitle.numberOfLines = 0
+        popUpTitle.isHidden = true
+        popUpTitle.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(popUpTitle)
+        
+        popUpSubTitle.textColor = .black
+        popUpSubTitle.font = UIFont(name: "Inter-Regular", size: 16)
+        popUpSubTitle.numberOfLines = 0
+        popUpSubTitle.isHidden = true
+        popUpSubTitle.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(popUpSubTitle)
+    }
+    
+    @objc func buttonContinueMeta() {
+        if let tabBarController = self.tabBarController {
+            tabBarController.tabBar.isHidden = true
+        }
+        
+        FIOField.isEnabled = false
+        phoneField.isEnabled = false
+        messageField.isEnabled = false
+        
+        popUpSupport.isHidden = false
+        popUpTitle.isHidden = false
+        popUpSubTitle.isHidden = false
+        popUpButton.isHidden = false
+        blackOverlayView.isHidden = false
+        
+        popUpTitle.text = "Спасибо!"
+        popUpSubTitle.text = "Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время."
+    }
+    
+    @objc func popUpButtonMeta() {
+        if let tabBarController = self.tabBarController {
+            tabBarController.tabBar.isHidden = false
+        }
+        
+        popUpSupport.isHidden = true
+        popUpTitle.isHidden = true
+        popUpSubTitle.isHidden = true
+        popUpButton.isHidden = true
+        blackOverlayView.isHidden = true
+        
+        FIOField.isEnabled = true
+        phoneField.isEnabled = true
+        messageField.isEnabled = true
     }
 }
 
@@ -126,13 +202,35 @@ extension SupportViewController {
             messageField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             messageField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonRegister.bottomAnchor.constraint(equalTo: privacyLabel.topAnchor, constant: -24),
-            buttonRegister.heightAnchor.constraint(equalToConstant: 56),
+            buttonContinue.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonContinue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonContinue.bottomAnchor.constraint(equalTo: privacyLabel.topAnchor, constant: -24),
+            buttonContinue.heightAnchor.constraint(equalToConstant: 56),
             
             privacyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             privacyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            popUpSupport.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            popUpSupport.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            popUpSupport.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            popUpSupport.heightAnchor.constraint(equalToConstant: 249),
+            
+            popUpButton.bottomAnchor.constraint(equalTo: popUpSupport.bottomAnchor, constant: -44),
+            popUpButton.leadingAnchor.constraint(equalTo: popUpSupport.leadingAnchor, constant: 16),
+            popUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            popUpButton.heightAnchor.constraint(equalToConstant: 56),
+            
+            blackOverlayView.topAnchor.constraint(equalTo: view.topAnchor),
+            blackOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blackOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blackOverlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            popUpTitle.topAnchor.constraint(equalTo: popUpSupport.topAnchor, constant: 24),
+            popUpTitle.leadingAnchor.constraint(equalTo: popUpSupport.leadingAnchor, constant: 16),
+            
+            popUpSubTitle.topAnchor.constraint(equalTo: popUpTitle.bottomAnchor, constant: 16),
+            popUpSubTitle.leadingAnchor.constraint(equalTo: popUpSupport.leadingAnchor, constant: 16),
+            popUpSubTitle.trailingAnchor.constraint(equalTo: popUpSupport.trailingAnchor, constant: -16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
