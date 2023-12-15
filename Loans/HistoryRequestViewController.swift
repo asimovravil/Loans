@@ -24,8 +24,6 @@ class HistoryRequestViewController: UIViewController {
 
         setupUI()
         setupConstraints()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateHistoryCell(_:)), name: NSNotification.Name("LoanAmountNotification"), object: nil)
     }
 }
 
@@ -61,7 +59,7 @@ extension HistoryRequestViewController {
             tableView.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: 40),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
@@ -72,18 +70,6 @@ extension HistoryRequestViewController {
             NSLayoutConstraint.activate([
                 historyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             ])
-        }
-    }
-    
-    @objc private func updateHistoryCell(_ notification: Notification) {
-        if let userInfo = notification.userInfo as? [String: String],
-           let loanAmount = userInfo["loanAmount"],
-           let currentDate = userInfo["currentDate"] {
-            let newLoanRequest = LoanRequest(amount: loanAmount, date: currentDate)
-            loanRequests.append(newLoanRequest)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
         }
     }
 }
@@ -107,5 +93,16 @@ extension HistoryRequestViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+}
+
+extension HistoryRequestViewController: LoanRequestDelegate {
+    func didReceiveNewLoanRequest(amount: String, date: String) {
+        print("didReceiveNewLoanRequest called with amount: \(amount) and date: \(date)")
+        DispatchQueue.main.async {
+            let newLoanRequest = LoanRequest(amount: amount, date: date)
+            self.loanRequests.append(newLoanRequest)
+            self.tableView.reloadData()
+        }
     }
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LoanRequestDelegate: AnyObject {
+    func didReceiveNewLoanRequest(amount: String, date: String)
+}
+
 class AmountViewController: UIViewController {
 
     let amountLabel = UILabel()
@@ -16,6 +20,8 @@ class AmountViewController: UIViewController {
     let amountButtonRequest = UIButton(type: .system)
     let privacyLabel = UILabel()
     let wrongLabel = UILabel()
+    
+    weak var delegate: LoanRequestDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +71,6 @@ extension AmountViewController {
         loansField.keyboardType = .numberPad
         loansField.backgroundColor = AppColor.yellowLightCustom.uiColor
         loansField.translatesAutoresizingMaskIntoConstraints = false
-        loansField.addTarget(self, action: #selector(loansFieldChanged), for: .editingChanged)
         view.addSubview(loansField)
         
         amountSubLabel.text = "Сумма займа"
@@ -81,7 +86,6 @@ extension AmountViewController {
         amountButtonRequest.setTitleColor(.black, for: .normal)
         amountButtonRequest.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         amountButtonRequest.backgroundColor = AppColor.yellowCustom.uiColor
-        amountButtonRequest.isEnabled = false
         amountButtonRequest.translatesAutoresizingMaskIntoConstraints = false
         amountButtonRequest.addTarget(self, action: #selector(amountButtonRequestMeta), for: .touchUpInside)
         view.addSubview(amountButtonRequest)
@@ -117,12 +121,6 @@ extension AmountViewController {
     }
     
     @objc func amountButtonRequestMeta() {
-        let registerVC = RegistrationViewController()
-        registerVC.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(registerVC, animated: true)
-    }
-    
-    @objc private func loansFieldChanged() {
         if let amountText = loansField.text, let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")), amount >= 5000 {
             amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = true
@@ -130,10 +128,10 @@ extension AmountViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy"
             let currentDate = dateFormatter.string(from: Date())
-            let userInfo = ["loanAmount": amountText, "currentDate": currentDate]
-            NotificationCenter.default.post(name: NSNotification.Name("LoanAmountNotification"), object: nil, userInfo: userInfo)
+
+            delegate?.didReceiveNewLoanRequest(amount: amountText, date: currentDate)
         } else {
-            amountButtonRequest.isEnabled = false
+            amountButtonRequest.isEnabled = true
             wrongLabel.isHidden = false
         }
     }
@@ -172,6 +170,10 @@ extension AmountViewController {
             privacyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             privacyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             privacyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            wrongLabel.topAnchor.constraint(equalTo: amountSubLabel.bottomAnchor, constant: 8),
+            wrongLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            wrongLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
