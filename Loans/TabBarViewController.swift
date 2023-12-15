@@ -19,7 +19,7 @@ class TabBarViewController: UITabBarController {
         let tab1 = UINavigationController(rootViewController: AmountViewController())
         let tab2 = UINavigationController(rootViewController: HistoryRequestViewController())
         let tab3 = ProfileViewController()
-        let tab4 = UINavigationController(rootViewController: RegistrationViewController())
+        let tab4 = UINavigationController(rootViewController: SupportViewController())
         let tab5 = UINavigationController(rootViewController: LoginViewController())
         
         tabBar.layer.borderWidth = 0.5

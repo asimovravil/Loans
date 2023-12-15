@@ -1,5 +1,5 @@
 //
-//  RegisterProfileViewController.swift
+//  SupportViewController.swift
 //  Loans
 //
 //  Created by Ravil on 15.12.2023.
@@ -8,13 +8,12 @@
 import UIKit
 import SkyFloatingLabelTextField
 
-class RegisterProfileViewController: UIViewController {
+class SupportViewController: UIViewController {
 
-    let dateLabel = UILabel()
-    let lastNameField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
-    let firstNameField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
-    let middleNameField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
+    let supportLabel = UILabel()
+    let FIOField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let phoneField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
+    let messageField = SkyFloatingLabelTextField(frame: CGRect(x: 0, y: 0, width: 0, height: 85))
     let buttonRegister = UIButton(type: .system)
     let privacyLabel = UILabel()
     
@@ -35,58 +34,40 @@ class RegisterProfileViewController: UIViewController {
     }
     
     @objc private func dismissKeyboard() {
-        lastNameField.resignFirstResponder()
-        firstNameField.resignFirstResponder()
-        middleNameField.resignFirstResponder()
+        FIOField.resignFirstResponder()
+        phoneField.resignFirstResponder()
+        messageField.resignFirstResponder()
         phoneField.resignFirstResponder()
         view.endEditing(true)
     }
 }
 
-extension RegisterProfileViewController {
+extension SupportViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        dateLabel.text = "Заполните данные"
-        dateLabel.textColor = .black
-        dateLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
-        dateLabel.textAlignment = .center
-        dateLabel.numberOfLines = 0
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(dateLabel)
+        supportLabel.text = "Связь с менеджером"
+        supportLabel.textColor = .black
+        supportLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
+        supportLabel.textAlignment = .center
+        supportLabel.numberOfLines = 0
+        supportLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(supportLabel)
         
-        buttonRegister.setTitle("Продолжить", for: .normal)
+        buttonRegister.setTitle("Отправить", for: .normal)
         buttonRegister.setTitleColor(.black, for: .normal)
         buttonRegister.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         buttonRegister.backgroundColor = AppColor.yellowCustom.uiColor
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonRegister)
         
-        lastNameField.placeholder = "Иванов"
-        lastNameField.title = "Фамилия"
-        lastNameField.font = UIFont(name: "Inter-Regular", size: 18)
-        lastNameField.selectedLineColor = AppColor.yellowCustom.uiColor
-        lastNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
-        lastNameField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(lastNameField)
-        
-        firstNameField.placeholder = "Иван"
-        firstNameField.title = "Имя"
-        firstNameField.font = UIFont(name: "Inter-Regular", size: 18)
-        firstNameField.selectedLineColor = AppColor.yellowCustom.uiColor
-        firstNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
-        firstNameField.textContentType = .none
-        firstNameField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(firstNameField)
-        
-        middleNameField.placeholder = "Иванович"
-        middleNameField.title = "Отчество"
-        middleNameField.font = UIFont(name: "Inter-Regular", size: 18)
-        middleNameField.selectedLineColor = AppColor.yellowCustom.uiColor
-        middleNameField.selectedTitleColor = AppColor.yellowCustom.uiColor
-        middleNameField.textContentType = .none
-        middleNameField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(middleNameField)
+        FIOField.placeholder = "Иванов Иван Иванович"
+        FIOField.title = "ФИО"
+        FIOField.font = UIFont(name: "Inter-Regular", size: 18)
+        FIOField.selectedLineColor = AppColor.yellowCustom.uiColor
+        FIOField.selectedTitleColor = AppColor.yellowCustom.uiColor
+        FIOField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(FIOField)
         
         phoneField.placeholder = "+7 (999) 123 45 67"
         phoneField.title = "Телефон"
@@ -97,6 +78,15 @@ extension RegisterProfileViewController {
         phoneField.keyboardType = .phonePad
         phoneField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(phoneField)
+        
+        messageField.placeholder = "Сообщение..."
+        messageField.title = "Сообщение"
+        messageField.font = UIFont(name: "Inter-Regular", size: 18)
+        messageField.selectedLineColor = AppColor.yellowCustom.uiColor
+        messageField.selectedTitleColor = AppColor.yellowCustom.uiColor
+        messageField.textContentType = .none
+        messageField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(messageField)
         
         let privacyText = "Нажимая кнопку я даю согласие на обработку с\nсвоих персональных данных"
         let attributedText = NSMutableAttributedString(string: privacyText, attributes: [
@@ -119,44 +109,41 @@ extension RegisterProfileViewController {
     }
 }
 
-extension RegisterProfileViewController {
+extension SupportViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            dateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            supportLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            lastNameField.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 40),
-            lastNameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            lastNameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            FIOField.topAnchor.constraint(equalTo: supportLabel.bottomAnchor, constant: 40),
+            FIOField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            FIOField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            firstNameField.topAnchor.constraint(equalTo: lastNameField.bottomAnchor, constant: 32),
-            firstNameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            firstNameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
-            middleNameField.topAnchor.constraint(equalTo: firstNameField.bottomAnchor, constant: 32),
-            middleNameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            middleNameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
-            phoneField.topAnchor.constraint(equalTo: middleNameField.bottomAnchor, constant: 32),
+            phoneField.topAnchor.constraint(equalTo: FIOField.bottomAnchor, constant: 32),
             phoneField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             phoneField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            messageField.topAnchor.constraint(equalTo: phoneField.bottomAnchor, constant: 32),
+            messageField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            messageField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             buttonRegister.bottomAnchor.constraint(equalTo: privacyLabel.topAnchor, constant: -24),
             buttonRegister.heightAnchor.constraint(equalToConstant: 56),
             
-            privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
             privacyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             privacyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
         
         if UIScreen.main.bounds.size.height >= 812 {
             NSLayoutConstraint.activate([
-                dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+                supportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -114),
             ])
         } else {
             NSLayoutConstraint.activate([
-                dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+                supportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+                privacyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -74),
             ])
         }
     }
