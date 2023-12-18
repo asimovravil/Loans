@@ -120,39 +120,34 @@ extension AmountViewController {
     }
     
     @objc func amountButtonRequestMeta() {
-        if let amountText = loansField.text,
-           let amount = Int(amountText.replacingOccurrences(of: " ₽", with: "")),
-           amount >= 5000 {
-
-            amountButtonRequest.isEnabled = true
-            wrongLabel.isHidden = true
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            let currentDate = dateFormatter.string(from: Date())
-
-            delegate?.didReceiveNewLoanRequest(amount: amountText, date: currentDate)
-
-            let isUserLoggedIn = UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPassword") != nil
-
-            if self.tabBarController != nil {
-            } else {
-                if isUserLoggedIn {
-                    let tabBarVC = TabBarViewController()
-                    tabBarVC.navigationItem.hidesBackButton = true
-                    self.navigationController?.pushViewController(tabBarVC, animated: true)
-                } else {
-                    let registrationVC = RegistrationViewController()
-                    registrationVC.navigationItem.hidesBackButton = true
-                    self.navigationController?.pushViewController(registrationVC, animated: true)
-                }
-            }
-        } else {
-            amountButtonRequest.isEnabled = true
+        guard let amountText = loansField.text?.replacingOccurrences(of: " ₽", with: ""),
+              let amount = Int(amountText),
+              amount >= 5000, amount <= 5000000 else {
             wrongLabel.isHidden = false
+            return
         }
+
+        wrongLabel.isHidden = true
+        amountButtonRequest.isEnabled = true
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let currentDate = dateFormatter.string(from: Date())
+
+        delegate?.didReceiveNewLoanRequest(amount: "\(amount) ₽", date: currentDate)
+
+        navigateBasedOnUserLoggedInStatus()
     }
 
+    private func navigateBasedOnUserLoggedInStatus() {
+        let isUserLoggedIn = UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPassword") != nil
+
+        if self.tabBarController == nil {
+            let nextViewController = isUserLoggedIn ? TabBarViewController() : RegistrationViewController()
+            nextViewController.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+    }
 }
 
 extension AmountViewController {
