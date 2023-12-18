@@ -27,6 +27,11 @@ class HistoryRequestViewController: UIViewController {
         loadLoanRequests()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveLoanRequests()
+    }
+    
     func saveLoanRequests() {
         let encoder = JSONEncoder()
         do {
