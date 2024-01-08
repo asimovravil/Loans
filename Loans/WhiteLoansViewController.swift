@@ -15,6 +15,9 @@ enum LoansType {
 
 class WhiteLoansViewController: UIViewController {
 
+    var onlineLoans: [Loan] = []
+    var creditCards: [Loan] = []
+    
     let loansOnlineLabel = UILabel()
     let warningImage = UIImageView()
     
@@ -36,11 +39,27 @@ class WhiteLoansViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        loadOnlineLoansData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+    }
+    
+    private func loadOnlineLoansData() {
+        let networkManager = NetworkManager()
+        networkManager.fetchLoans { [weak self] loans, error in
+            DispatchQueue.main.async {
+                if let loans = loans {
+                    self?.onlineLoans = loans.filter { $0.type == .online }
+                    self?.creditCards = loans.filter { $0.type == .card }.suffix(3)
+                    self?.mainCollectionView.reloadData()
+                } else if let error = error {
+                    print("Ошибка: \(error)")
+                }
+            }
+        }
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -193,6 +212,8 @@ extension WhiteLoansViewController: UICollectionViewDataSource, UICollectionView
             ) as? CreditCell else {
                 fatalError("Could not cast to CreditCell")
             }
+            let card = creditCards[indexPath.item]
+            cell.configure(with: card)
             return cell
         case .loans:
             guard let cell = collectionView.dequeueReusableCell(
@@ -201,6 +222,8 @@ extension WhiteLoansViewController: UICollectionViewDataSource, UICollectionView
             ) as? LoansCell else {
                 fatalError("Could not cast to LoansCell")
             }
+            let loan = onlineLoans[indexPath.item]
+            cell.configure(with: loan)
             return cell
         }
     }
@@ -209,9 +232,9 @@ extension WhiteLoansViewController: UICollectionViewDataSource, UICollectionView
         let section = sections[section]
         switch section {
         case .credit:
-            return 3
+            return creditCards.count
         case .loans:
-            return 10
+            return onlineLoans.count
         }
     }
 }

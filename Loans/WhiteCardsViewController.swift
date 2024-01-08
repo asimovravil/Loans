@@ -9,6 +9,8 @@ import UIKit
 
 class WhiteCardsViewController: UIViewController {
 
+    var cards: [Loan] = []
+    
     let cardLabel = UILabel()
     let cardSubLabel = UILabel()
     let tableView = UITableView(frame: .zero, style: .plain)
@@ -18,6 +20,21 @@ class WhiteCardsViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        loadCardData()
+    }
+    
+    private func loadCardData() {
+        let networkManager = NetworkManager()
+        networkManager.fetchLoans { [weak self] loans, error in
+            DispatchQueue.main.async {
+                if let loans = loans {
+                    self?.cards = loans.filter { $0.type == .card }
+                    self?.tableView.reloadData()
+                } else if let error = error {
+                    print("Ошибка: \(error)")
+                }
+            }
+        }
     }
 }
 
@@ -81,15 +98,23 @@ extension WhiteCardsViewController {
 
 extension WhiteCardsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardWhiteCell.reuseID, for: indexPath) as? CardWhiteCell else {
             fatalError("Could not cast to CardCell")
         }
+        let card = cards[indexPath.row]
+        cell.amountLabel.text = card.amount
+        cell.percentLabel.text = card.title
+        cell.webLoansLabel.text = card.description
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
+        
+        if let iconURL = URL(string: card.icon) {
+            cell.loadImage(from: iconURL)
+        }
         return cell
     }
     

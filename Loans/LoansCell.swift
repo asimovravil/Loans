@@ -27,6 +27,25 @@ class LoansCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with loan: Loan) {
+        amountLabel.text = loan.amount
+        webLoansLabel.text = loan.description
+        
+        if let url = URL(string: loan.icon) {
+            loadImage(from: url)
+        }
+    }
+
+    private func loadImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self?.logoImage.image = image
+                }
+            }
+        }.resume()
+    }
 }
 
 extension LoansCell {
@@ -35,6 +54,7 @@ extension LoansCell {
         logoImage.layer.masksToBounds = true
         logoImage.contentMode = .scaleAspectFill
         logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.layer.cornerRadius = 25
         contentView.addSubview(logoImage)
         
         amountLabel.text = "До 30 000 ₽"
@@ -79,6 +99,8 @@ extension LoansCell {
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            logoImage.heightAnchor.constraint(equalToConstant: 50),
+            logoImage.widthAnchor.constraint(equalToConstant: 50),
             
             amountLabel.topAnchor.constraint(equalTo: logoImage.topAnchor),
             amountLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 16),

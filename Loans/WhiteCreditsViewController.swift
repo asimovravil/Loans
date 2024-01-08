@@ -9,6 +9,7 @@ import UIKit
 
 class WhiteCreditsViewController: UIViewController {
 
+    var credits: [Loan] = []
     let creditLabel = UILabel()
     let tableView = UITableView(frame: .zero, style: .plain)
     
@@ -17,6 +18,21 @@ class WhiteCreditsViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+        loadCreditData()
+    }
+    
+    private func loadCreditData() {
+        let networkManager = NetworkManager()
+        networkManager.fetchLoans { [weak self] loans, error in
+            DispatchQueue.main.async {
+                if let loans = loans {
+                    self?.credits = loans.filter { $0.type == .credit }
+                    self?.tableView.reloadData()
+                } else if let error = error {
+                    print("Ошибка: \(error)")
+                }
+            }
+        }
     }
 }
 
@@ -69,15 +85,23 @@ extension WhiteCreditsViewController {
 
 extension WhiteCreditsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return credits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CreditsWhiteCell.reuseID, for: indexPath) as? CreditsWhiteCell else {
             fatalError("Could not cast to CreditsWhiteCell")
         }
+        let credit = credits[indexPath.row]
+        cell.amountLabel.text = credit.amount
+        cell.percentLabel.text = credit.title
+        cell.webLoansLabel.text = credit.description
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
+        
+        if let iconURL = URL(string: credit.icon) {
+            cell.loadImage(from: iconURL)
+        }
         return cell
     }
     

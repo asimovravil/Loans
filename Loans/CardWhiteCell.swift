@@ -37,11 +37,12 @@ extension CardWhiteCell {
         logoImage.layer.masksToBounds = true
         logoImage.contentMode = .scaleAspectFill
         logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.layer.cornerRadius = 25
         contentView.addSubview(logoImage)
         
         amountLabel.text = "До 30 000 ₽"
         amountLabel.textColor = .black
-        amountLabel.font = UIFont(name: "Inter-SemiBold", size: 24)
+        amountLabel.font = UIFont(name: "Inter-SemiBold", size: 22)
         amountLabel.textAlignment = .center
         amountLabel.numberOfLines = 0
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +90,8 @@ extension CardWhiteCell {
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            logoImage.heightAnchor.constraint(equalToConstant: 50),
+            logoImage.widthAnchor.constraint(equalToConstant: 50),
             
             amountLabel.topAnchor.constraint(equalTo: logoImage.topAnchor),
             amountLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 16),
@@ -110,5 +113,17 @@ extension CardWhiteCell {
             lineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             lineView.heightAnchor.constraint(equalToConstant: 0.5),
         ])
+    }
+}
+
+extension CardWhiteCell {
+    func loadImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self?.logoImage.image = image
+                }
+            }
+        }.resume()
     }
 }

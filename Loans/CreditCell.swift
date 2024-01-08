@@ -27,6 +27,25 @@ class CreditCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with loan: Loan) {
+        amountLabel.text = loan.amount
+        webLoansLabel.text = loan.description
+        
+        if let url = URL(string: loan.icon) {
+            loadImage(from: url, into: logoImage)
+        }
+    }
+
+    private func loadImage(from url: URL, into imageView: UIImageView) {
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    imageView.image = image
+                }
+            }
+        }.resume()
+    }
 }
 
 extension CreditCell {
@@ -68,6 +87,7 @@ extension CreditCell {
         logoImage.layer.masksToBounds = true
         logoImage.contentMode = .scaleAspectFill
         logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.layer.cornerRadius = 25
         contentView.addSubview(logoImage)
     }
 }
@@ -94,6 +114,8 @@ extension CreditCell {
 
             logoImage.trailingAnchor.constraint(equalTo: creditCard.trailingAnchor, constant: -16),
             logoImage.bottomAnchor.constraint(equalTo: creditCard.bottomAnchor, constant: -16),
+            logoImage.heightAnchor.constraint(equalToConstant: 50),
+            logoImage.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
 }

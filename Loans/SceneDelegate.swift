@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window.rootViewController = isUserLoggedIn ?
             UINavigationController(rootViewController: TabBarViewController()) :
-            UINavigationController(rootViewController: OnboardingViewController())
+            UINavigationController(rootViewController: TabBarWhiteViewController())
 
         window.makeKeyAndVisible()
         self.window = window
