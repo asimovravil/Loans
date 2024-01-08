@@ -42,7 +42,7 @@ extension CreditsWhiteCell {
         
         amountLabel.text = "До 30 000 ₽"
         amountLabel.textColor = .black
-        amountLabel.font = UIFont(name: "Inter-SemiBold", size: 20)
+        amountLabel.font = UIFont(name: "Inter-SemiBold", size: 24)
         amountLabel.textAlignment = .center
         amountLabel.numberOfLines = 0
         amountLabel.translatesAutoresizingMaskIntoConstraints = false

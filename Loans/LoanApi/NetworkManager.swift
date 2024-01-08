@@ -23,9 +23,18 @@ class NetworkManager {
                     return
                 }
 
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
+                guard let httpResponse = response as? HTTPURLResponse else {
                     completion(nil, NSError(domain: "InvalidResponse", code: 0, userInfo: nil))
+                    return
+                }
+
+                if httpResponse.statusCode == 429 {
+                    if let retryAfter = httpResponse.value(forHTTPHeaderField: "Retry-After"),
+                       let retryAfterSeconds = Double(retryAfter) {
+                        DispatchQueue.global().asyncAfter(deadline: .now() + retryAfterSeconds) {
+                            self.fetchLoans(completion: completion)
+                        }
+                    }
                     return
                 }
 
