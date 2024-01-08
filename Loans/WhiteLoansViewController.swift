@@ -238,3 +238,27 @@ extension WhiteLoansViewController: UICollectionViewDataSource, UICollectionView
         }
     }
 }
+
+extension WhiteLoansViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        switch section {
+        case .credit:
+            let creditCard = creditCards[indexPath.item]
+            if let url = URL(string: creditCard.url) {
+                openWebView(with: url)
+            }
+        case .loans:
+            let loan = onlineLoans[indexPath.item]
+            if let url = URL(string: loan.url) {
+                openWebView(with: url)
+            }
+        }
+    }
+
+    private func openWebView(with url: URL) {
+        let webViewController = WebViewController()
+        webViewController.url = url
+        present(webViewController, animated: true)
+    }
+}

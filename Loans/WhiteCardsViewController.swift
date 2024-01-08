@@ -117,7 +117,19 @@ extension WhiteCardsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
-    
+}
+
+extension WhiteCardsViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = cards[indexPath.row]
+        if let url = URL(string: card.url) {
+            openWebView(with: url)
+        }
+    }
+
+    private func openWebView(with url: URL) {
+        let webViewController = WebViewController()
+        webViewController.url = url
+        present(webViewController, animated: true)
     }
 }

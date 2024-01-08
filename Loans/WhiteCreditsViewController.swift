@@ -104,7 +104,19 @@ extension WhiteCreditsViewController: UITableViewDataSource, UITableViewDelegate
         }
         return cell
     }
-    
+}
+
+extension WhiteCreditsViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let credit = credits[indexPath.row]
+        if let url = URL(string: credit.url) {
+            openWebView(with: url)
+        }
+    }
+
+    private func openWebView(with url: URL) {
+        let webViewController = WebViewController()
+        webViewController.url = url
+        present(webViewController, animated: true)
     }
 }
